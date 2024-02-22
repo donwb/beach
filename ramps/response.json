@@ -1,0 +1,241 @@
+{
+    "displayFieldName": "AccessName",
+    "fieldAliases": {
+        "OBJECTID": "OBJECTID",
+        "AccessName": "AccessName",
+        "AccessID": "AccessID",
+        "AccessType": "AccessType",
+        "GeneralLoc": "GeneralLoc",
+        "MilePost": "MilePost",
+        "City": "City",
+        "Status": "Status",
+        "AccessStatus": "AccessStatus",
+        "Entry_Date_Time": "Entry_Date_Time",
+        "DrivingZone": "DrivingZone"
+    },
+    "geometryType": "esriGeometryPoint",
+    "spatialReference": {
+        "wkid": 4326,
+        "latestWkid": 4326
+    },
+    "fields": [
+        {
+            "name": "OBJECTID",
+            "type": "esriFieldTypeOID",
+            "alias": "OBJECTID"
+        },
+        {
+            "name": "AccessName",
+            "type": "esriFieldTypeString",
+            "alias": "AccessName",
+            "length": 40
+        },
+        {
+            "name": "AccessID",
+            "type": "esriFieldTypeString",
+            "alias": "AccessID",
+            "length": 50
+        },
+        {
+            "name": "AccessType",
+            "type": "esriFieldTypeString",
+            "alias": "AccessType",
+            "length": 25
+        },
+        {
+            "name": "GeneralLoc",
+            "type": "esriFieldTypeString",
+            "alias": "GeneralLoc",
+            "length": 100
+        },
+        {
+            "name": "MilePost",
+            "type": "esriFieldTypeDouble",
+            "alias": "MilePost"
+        },
+        {
+            "name": "City",
+            "type": "esriFieldTypeString",
+            "alias": "City",
+            "length": 50
+        },
+        {
+            "name": "Status",
+            "type": "esriFieldTypeString",
+            "alias": "Status",
+            "length": 25
+        },
+        {
+            "name": "AccessStatus",
+            "type": "esriFieldTypeString",
+            "alias": "AccessStatus",
+            "length": 50
+        },
+        {
+            "name": "Entry_Date_Time",
+            "type": "esriFieldTypeDate",
+            "alias": "Entry_Date_Time",
+            "length": 8
+        },
+        {
+            "name": "DrivingZone",
+            "type": "esriFieldTypeString",
+            "alias": "DrivingZone",
+            "length": 50
+        }
+    ],
+    "features": [
+        {
+            "attributes": {
+                "OBJECTID": 106,
+                "AccessName": "WILLIAMS AV",
+                "AccessID": "DB-042",
+                "AccessType": "OPEN VEHICLE RAMP",
+                "GeneralLoc": "2200 BLK N ATLANTIC AV",
+                "MilePost": 12.5,
+                "City": "DAYTONA BEACH",
+                "Status": "ACTIVE",
+                "AccessStatus": "OPEN",
+                "Entry_Date_Time": 1708587048000,
+                "DrivingZone": "YES"
+            },
+            "geometry": {
+                "x": -81.023065442677321,
+                "y": 29.259081261379386
+            }
+        },
+        {
+            "attributes": {
+                "OBJECTID": 4,
+                "AccessName": "UNIVERSITY BLVD",
+                "AccessID": "DB-048",
+                "AccessType": "OPEN VEHICLE RAMP",
+                "GeneralLoc": "900 BLK N ATLANTIC AV",
+                "MilePost": 13.74,
+                "City": "DAYTONA BEACH",
+                "Status": "ACTIVE",
+                "AccessStatus": "OPEN",
+                "Entry_Date_Time": 1708587048000,
+                "DrivingZone": "BOTH"
+            },
+            "geometry": {
+                "x": -81.01508803280349,
+                "y": 29.24246579525828
+            }
+        },
+        {
+            "attributes": {
+                "OBJECTID": 26,
+                "AccessName": "SEABREEZE BLVD",
+                "AccessID": "DB-051",
+                "AccessType": "OPEN VEHICLE RAMP",
+                "GeneralLoc": "500 BLK N ATLANTIC AV",
+                "MilePost": 14.24,
+                "City": "DAYTONA BEACH",
+                "Status": "ACTIVE",
+                "AccessStatus": "OPEN",
+                "Entry_Date_Time": 1708587048000,
+                "DrivingZone": "BOTH"
+            },
+            "geometry": {
+                "x": -81.012086771478508,
+                "y": 29.235698550455652
+            }
+        },
+        {
+            "attributes": {
+                "OBJECTID": 33,
+                "AccessName": "GRANADA BLVD",
+                "AccessID": "OB-030",
+                "AccessType": "OPEN VEHICLE RAMP",
+                "GeneralLoc": "20 BLK OCEAN SHORE BLVD",
+                "MilePost": 10.02,
+                "City": "ORMOND BEACH",
+                "Status": "ACTIVE",
+                "AccessStatus": "OPEN",
+                "Entry_Date_Time": 1708587048000,
+                "DrivingZone": "BOTH"
+            },
+            "geometry": {
+                "x": -81.039415208677937,
+                "y": 29.292116684656595
+            }
+        },
+        {
+            "attributes": {
+                "OBJECTID": 72,
+                "AccessName": "ROCKEFELLER DR",
+                "AccessID": "OB-034",
+                "AccessType": "OPEN VEHICLE RAMP",
+                "GeneralLoc": "400 BLK S ATLANTIC AV",
+                "MilePost": 10.9,
+                "City": "ORMOND BEACH",
+                "Status": "ACTIVE",
+                "AccessStatus": "OPEN",
+                "Entry_Date_Time": 1708587048000,
+                "DrivingZone": "YES"
+            },
+            "geometry": {
+                "x": -81.033835830324449,
+                "y": 29.280572167354887
+            }
+        },
+        {
+            "attributes": {
+                "OBJECTID": 144,
+                "AccessName": "CARDINAL DR",
+                "AccessID": "OB-036",
+                "AccessType": "OPEN VEHICLE RAMP",
+                "GeneralLoc": "600 BLK S ATLANTIC AV",
+                "MilePost": 11.27,
+                "City": "ORMOND BEACH",
+                "Status": "ACTIVE",
+                "AccessStatus": "OPEN",
+                "Entry_Date_Time": 1708587048000,
+                "DrivingZone": "YES"
+            },
+            "geometry": {
+                "x": -81.031280928617932,
+                "y": 29.275560989113085
+            }
+        },
+        {
+            "attributes": {
+                "OBJECTID": 65,
+                "AccessName": "MILSAP RD",
+                "AccessID": "OB-037",
+                "AccessType": "OPEN VEHICLE RAMP",
+                "GeneralLoc": "700 BLK S ATLANTIC AV",
+                "MilePost": 11.52,
+                "City": "ORMOND BEACH",
+                "Status": "ACTIVE",
+                "AccessStatus": "OPEN",
+                "Entry_Date_Time": 1708587048000,
+                "DrivingZone": "YES"
+            },
+            "geometry": {
+                "x": -81.029609788519537,
+                "y": 29.272216614438531
+            }
+        },
+        {
+            "attributes": {
+                "OBJECTID": 104,
+                "AccessName": "HARVARD DR",
+                "AccessID": "OB-038",
+                "AccessType": "OPEN VEHICLE RAMP",
+                "GeneralLoc": "900 BLK S ATLANTIC AV",
+                "MilePost": 11.72,
+                "City": "ORMOND BEACH",
+                "Status": "ACTIVE",
+                "AccessStatus": "OPEN",
+                "Entry_Date_Time": 1708587048000,
+                "DrivingZone": "YES"
+            },
+            "geometry": {
+                "x": -81.028407446920454,
+                "y": 29.269465602042324
+            }
+        }
+    ]
+}
