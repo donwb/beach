@@ -10,7 +10,6 @@ import (
 func getAllRamps() []RampStatus {
 
 	connectString := getConnectString()
-	fmt.Println("Connect String: ", connectString)
 
 	db, err := sql.Open("postgres", connectString)
 	checkError(err, "opening connection")
