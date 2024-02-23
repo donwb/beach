@@ -11,7 +11,7 @@ var database string
 var dbuser string
 var host string
 var password string
-var port string
+var dbport string
 
 func main() {
 
@@ -30,14 +30,14 @@ func setupEnvVars() {
 	dbuser = os.Getenv("DBUSER")
 	host = os.Getenv("HOST")
 	password = os.Getenv("PASSWORD")
-	port = os.Getenv("PORT")
+	dbport = os.Getenv("DBPORT")
 
 	fmt.Println("\n\n-------- ENVVARS ------------")
 	fmt.Println("database: ", database)
 	fmt.Println("dbuser:", dbuser)
 	fmt.Println("Host:", host)
 	fmt.Println("Password", password)
-	fmt.Println("Port:", port)
+	fmt.Println("DBPort:", dbport)
 
 }
 

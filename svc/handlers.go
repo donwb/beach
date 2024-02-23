@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/labstack/echo/v4"
 )
 
@@ -11,6 +13,8 @@ func homeHandler(c echo.Context) error {
 }
 
 func rampStatusHandler(c echo.Context) error {
+
+	fmt.Println("Ramp Status Handler")
 
 	rampStatusResponse := getAllRamps()
 
