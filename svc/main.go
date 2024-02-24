@@ -20,6 +20,7 @@ func main() {
 	e := echo.New()
 	e.GET("/", homeHandler)
 	e.GET("/rampstatus", rampStatusHandler)
+	e.GET("/ramps", rampsHandler)
 
 	// Start!
 	e.Logger.Fatal(e.Start(":1323"))
