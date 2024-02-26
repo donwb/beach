@@ -2,15 +2,16 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
 
-func homeHandler(c echo.Context) error {
+// func homeHandler(c echo.Context) error {
 
-	return c.String(200, "nothing to see here.......")
+// 	return c.String(200, "nothing to see here.......")
 
-}
+// }
 
 func rampStatusHandler(c echo.Context) error {
 
@@ -38,4 +39,12 @@ func rampsHandler(c echo.Context) error {
 	//retVal := ramps + rs
 
 	return c.String(200, retVal)
+}
+
+func indexHandler(c echo.Context) error {
+	fmt.Println("Index Handler")
+	return c.Render(http.StatusOK, "index.html", map[string]interface{}{
+		"name": "Ramps",
+		"msg":  "Ramp Info",
+	})
 }

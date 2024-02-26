@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"html/template"
+	"io"
 	"os"
 
 	"github.com/labstack/echo/v4"
@@ -13,12 +15,22 @@ var host string
 var password string
 var dbport string
 
+func (t *TemplateRegistry) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
+	return t.templates.ExecuteTemplate(w, name, data)
+}
+
 func main() {
 
 	setupEnvVars()
 
 	e := echo.New()
-	e.GET("/", homeHandler)
+	e.Renderer = &TemplateRegistry{
+		templates: template.Must(template.ParseGlob("view/*.html")),
+	}
+
+	e.Static("/static", "view")
+
+	e.GET("/", indexHandler)
 	e.GET("/rampstatus", rampStatusHandler)
 	e.GET("/ramps", rampsHandler)
 
