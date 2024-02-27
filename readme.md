@@ -1,4 +1,4 @@
-### Publish volusia county beach access ramp info
+### Beach access ramp info
 
 #### Rampfunc
 Failed attempt to get DO Functions to work, ignore for now
