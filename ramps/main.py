@@ -67,7 +67,7 @@ def upsert_ramps(ramp_name, access_status, o_id, city, access_id, location, db_c
     INSERT INTO rampstatus(ramp_name, access_status, o_id, city, access_id, location)
     VALUES
         (%s, %s, %s, %s, %s, %s)
-    ON CONFLICT(o_id)
+    ON CONFLICT(access_id)
     DO UPDATE SET
         ramp_name = EXCLUDED.ramp_name,
         access_status = EXCLUDED.access_status,
