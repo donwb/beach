@@ -5,7 +5,8 @@ const requestUpdate = async() => {
     const json = await response.json();
 
     console.log(json)
-    modifyPage(json)
+    //modifyPage(json)
+    modifyChatPage(json)
 }
   
 function modifyPage(pageData) {
@@ -31,21 +32,54 @@ function modifyPage(pageData) {
     
 }
 
+function modifyChatPage(pageData) {
+    for (const ramp of pageData) {
+        if (ramp.city.toLowerCase() === 'new smyrna beach') {
+            console.log(ramp);
+
+            dotColor = getDotColor(ramp.accessStatus);
+
+            const rampList = document.getElementById("ramps");
+            //console.log(rampList);
+
+            var elem = document.createElement('li');
+            var spanForDot = document.createElement('span');
+        
+            spanForDot.classList.add('dot', dotColor);
+            //spanForDot.classList.add(dotColor);
+            console.log(spanForDot);
+
+            elem.appendChild(spanForDot);
+            
+            var accessStatus = ramp.accessStatus;
+            var rampName = document.createTextNode(ramp.rampName + ' - ' + accessStatus);
+            elem.appendChild(rampName);
+
+            rampList.appendChild(elem);
+            //elem.textContent = ramp.rampName;
+
+            //document.getElementById('friendsList').appendChild(li);
+            console.log(rampList)
+        }
+    }
+}
+
+
 function getDotColor(status) {
     outputColor = 'greydot';
 
     switch(status.toLowerCase()) {
         case 'open':
-            outputColor = 'greendot';
+            outputColor = 'green';
             break;   
         case 'closed':
-            outputColor = 'reddot';
+            outputColor = 'red';
             break;
         case 'closing in progress', '4x4 only':
-            outputColor = 'yellowdot';
+            outputColor = 'yellow';
             break;
         default:
-            outputColor = 'greydot';
+            outputColor = 'grey';
     }
     
     return outputColor;

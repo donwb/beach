@@ -43,7 +43,7 @@ func rampsHandler(c echo.Context) error {
 
 func indexHandler(c echo.Context) error {
 	fmt.Println("Index Handler")
-	return c.Render(http.StatusOK, "index.html", map[string]interface{}{
+	return c.Render(http.StatusOK, "home.html", map[string]interface{}{
 		"name": "Ramps",
 		"msg":  "Ramp Info",
 	})

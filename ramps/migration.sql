@@ -15,12 +15,13 @@ ALTER TABLE ONLY public.rampstatus ALTER COLUMN id SET DEFAULT nextval('Ramp_id_
 ALTER SEQUENCE Ramp_id_seq OWNED BY public.rampstatus.id;
 
 ALTER TABLE rampstatus ADD UNIQUE (o_id);
+ALTER TABLE rampstatus ADD CONSTRAINT access_id_unk UNIQUE (access_id);
 
 -- Stub data
 INSERT INTO rampstatus(ramp_name, access_status, o_id, city, access_id, location)
 VALUES
 	('ramp', 'access', 1, 'my city', 'access id', 'loc')
-ON CONFLICT(o_id)
+ON CONFLICT(access_id)
 DO UPDATE SET
     ramp_name = EXCLUDED.ramp_name,
     access_status = EXCLUDED.access_status,

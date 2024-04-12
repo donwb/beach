@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Colored Dots List</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 0 20px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 10px;
+    font-size: 18px; /* Larger text for readability */
+  }
+  .dot {
+    height: 15px; /* Larger dot for better visibility */
+    width: 15px; /* Larger dot for better visibility */
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .red { background-color: red; }
+  .green { background-color: green; }
+  .yellow { background-color: yellow; }
+  .grey { background-color: grey; }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    li {
+      font-size: 16px; /* Adjust font size for smaller screens */
+    }
+    .dot {
+      height: 10px; /* Adjust dot size for smaller screens */
+      width: 10px; /* Adjust dot size for smaller screens */
+    }
+  }
+</style>
+<script src="static/page.js"></script>
+</head>
+<body>
+
+<h2>Current Ramp Status</h2>
+
+<ul id="ramps">
+  
+  <!-- Add more list items here -->
+</ul>
+
+</body>
+</html>
