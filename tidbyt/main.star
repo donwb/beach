@@ -32,6 +32,8 @@ def main(config):
     ramp_colors = set_ramp_colors(nsb_ramps)
     print(ramp_colors)
 
+    timezone = config.get("timezone") or "America/New_York"
+    current_time = time.now().in_location(timezone)
 
 
     return render.Root(
@@ -42,10 +44,29 @@ def main(config):
                         main_align="space_around",
                         cross_align="left",
                         children=[
-                            render.Text("Beachway", color=ramp_colors["beachway"]),
+                            render.Text("3rd Ave", color=ramp_colors["3rd"]),
                             render.Text("Crawford", color=ramp_colors["crawford"]),
                             render.Text("Flagler", color=ramp_colors["flagler"]),
-                            render.Text("3rd Ave", color=ramp_colors["3rd"]),
+                            render.Text("Beachway", color=ramp_colors["beachway"]),
+                        ]
+                ),
+                render.Column(
+                        expanded=True,
+                        children=[
+                            render.Box(
+                                width=5,
+                                height=10,)
+                        ],
+                ),
+                render.Column(
+                        expanded=False,
+                        main_align="space_around",
+                        cross_align="right",
+                        children=[
+                            render.Text(
+                                content = current_time.format("3:04"), color="#909d9f",
+                                font = "CG-pixel-3x5-mono"
+                            )
                         ]
                 )
             ]
