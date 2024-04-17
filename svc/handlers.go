@@ -48,3 +48,17 @@ func indexHandler(c echo.Context) error {
 		"msg":  "Ramp Info",
 	})
 }
+
+func tidesHandler(c echo.Context) error {
+
+	outputTideInfo := getTideInfo()
+	res := TideInfoResponse{
+		CurrentTideHighOrLow: "High",
+		TideLevelPercentage:  "50%",
+		WaterTemp:            "70",
+		TideInfo:             outputTideInfo,
+	}
+
+	return c.JSON(200, res)
+
+}

@@ -33,6 +33,7 @@ func main() {
 	e.GET("/", indexHandler)
 	e.GET("/rampstatus", rampStatusHandler)
 	e.GET("/ramps", rampsHandler)
+	e.GET("/tides", tidesHandler)
 
 	// Start!
 	e.Logger.Fatal(e.Start(":1323"))
