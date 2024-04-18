@@ -89,7 +89,9 @@ func getNextHighAndLowTides(tideInfo TideInfoFromNOAA) []TideInfo {
 		layout := "2006-01-02 15:04"
 		timeWithTimeZone := t.TideDateTime // + " EDT"
 
-		parsedTime, err := time.ParseInLocation(layout, timeWithTimeZone, time.Local)
+		//parsedTime, err := time.ParseInLocation(layout, timeWithTimeZone, time.Local)
+		loc, _ := time.LoadLocation("America/New_York")
+		parsedTime, err := time.ParseInLocation(layout, timeWithTimeZone, loc)
 		checkError(err, "Error parsing time")
 
 		// This calculation is not working right for dates other than today
@@ -146,9 +148,10 @@ func computeTideStatus(info TideInfo) string {
 
 func computeTidePercentage(info TideInfo) int {
 	const tideMinuteLength = 372
+	loc, _ := time.LoadLocation("America/New_York")
 
 	nextTideTime := info.TideDateTime
-	nowTime := time.Now()
+	nowTime := time.Now().In(loc)
 
 	// break down the time into hours and minutes
 	nowHour := nowTime.Hour()
