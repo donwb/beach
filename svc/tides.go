@@ -6,33 +6,23 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strconv"
+	"strings"
 	"time"
+)
+
+type NOAAUrlType int
+
+const (
+	DailyTides NOAAUrlType = iota // iota starts at 0
+	WaterTemp
 )
 
 func getTideInfo() []TideInfo {
 
 	fmt.Println("Tides Handler")
 
-	// https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=20240415&end_date=20240416&station=8721164&product=predictions&datum=MLLW&time_zone=lst_ldt&interval=hilo&units=english&format=json
-
-	baseURL := "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter"
-	params := url.Values{}
-
-	// need to add actual dates
-	params.Add("begin_date", "20240417")
-	params.Add("end_date", "20240417")
-	//
-
-	params.Add("station", "8721164")
-	params.Add("product", "predictions")
-	params.Add("datum", "MLLW")
-	params.Add("time_zone", "lst_ldt")
-	params.Add("interval", "hilo")
-	params.Add("units", "english")
-	params.Add("format", "json")
-
-	tidesURL := baseURL + "?" + params.Encode()
-	fmt.Println(tidesURL)
+	tidesURL := constructURL(DailyTides)
 
 	resp, err := http.Get(tidesURL)
 	checkError(err, "Error getting response")
@@ -51,6 +41,42 @@ func getTideInfo() []TideInfo {
 
 }
 
+func constructURL(urlType NOAAUrlType) string {
+
+	// tides:
+	// https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=20240415&end_date=20240416&station=8721164&product=predictions&datum=MLLW&time_zone=lst_ldt&interval=hilo&units=english&format=json
+	// water temp:
+	// https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=20240415&end_date=20240415&station=8721604&product=water_temperature&time_zone=lst_ldt&interval=h&units=english&format=json
+
+	baseURL := "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter"
+	params := url.Values{}
+
+	layout := "20060102"
+	today := time.Now()
+	formattedToday := today.Format(layout)
+
+	params.Add("begin_date", formattedToday)
+	params.Add("end_date", formattedToday)
+	params.Add("time_zone", "lst_ldt")
+	params.Add("units", "english")
+	params.Add("format", "json")
+
+	if urlType == DailyTides {
+		params.Add("station", "8721164")
+		params.Add("product", "predictions")
+		params.Add("datum", "MLLW")
+		params.Add("interval", "hilo")
+	} else {
+		params.Add("station", "8721604")
+		params.Add("product", "water_temperature")
+		params.Add("interval", "h")
+	}
+
+	tidesURL := baseURL + "?" + params.Encode()
+	fmt.Println(tidesURL)
+	return tidesURL
+}
+
 func getNextHighAndLowTides(tideInfo TideInfoFromNOAA) []TideInfo {
 	var outputTideInfo []TideInfo
 
@@ -66,6 +92,7 @@ func getNextHighAndLowTides(tideInfo TideInfoFromNOAA) []TideInfo {
 		parsedTime, err := time.ParseInLocation(layout, timeWithTimeZone, time.Local)
 		checkError(err, "Error parsing time")
 
+		// This calculation is not working right for dates other than today
 		if parsedTime.After(time.Now()) {
 			tide := TideInfo{
 				TideDateTime: parsedTime,
@@ -78,4 +105,65 @@ func getNextHighAndLowTides(tideInfo TideInfoFromNOAA) []TideInfo {
 
 	fmt.Println(outputTideInfo)
 	return outputTideInfo
+}
+
+func getWaterTemp() int {
+
+	//https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=20240415&end_date=20240415&station=8721604&product=water_temperature&time_zone=lst_ldt&interval=h&units=english&format=json
+	url := constructURL(WaterTemp)
+
+	resp, err := http.Get(url)
+	checkError(err, "WaterTemp:: Error getting response")
+
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	checkError(err, "WaterTemp:: Error reading response body")
+
+	var waterTempFromNOAA WaterTempFromNOAA
+	err = json.Unmarshal(body, &waterTempFromNOAA)
+	checkError(err, "WaterTemp:: Error unmarshalling json")
+
+	// convert water temp to int
+	tempToUse := waterTempFromNOAA.Data[6].V
+	decimalIndex := strings.Index(tempToUse, ".")
+	strTemp := tempToUse[:decimalIndex]
+
+	waterTemp, err := strconv.Atoi(strTemp)
+	checkError(err, "WaterTemp:: Error converting water temp to int")
+
+	return waterTemp
+}
+
+func computeTideStatus(info TideInfo) string {
+	// the current tide status is the opposite of the next tide
+
+	if info.HighOrLow == "H" {
+		return "Low"
+	}
+	return "High"
+}
+
+func computeTidePercentage(info TideInfo) int {
+	const tideMinuteLength = 372
+
+	nextTideTime := info.TideDateTime
+	nowTime := time.Now()
+
+	// break down the time into hours and minutes
+	nowHour := nowTime.Hour()
+	nextTideHour := nextTideTime.Hour()
+	hourDiff := nextTideHour - nowHour
+
+	tideMinutes := nextTideTime.Minute()
+	nowMinutes := 60 - nowTime.Minute()
+
+	// using the constant tideMinuteLength, calculate the percentage of the tide that has passed
+	totalMinutesToNextTide := (((hourDiff * 60) + tideMinutes) + nowMinutes)
+	minutesSinceLastTide := tideMinuteLength - totalMinutesToNextTide
+	percentage := (float64(minutesSinceLastTide) / float64(tideMinuteLength)) * 100
+
+	intPercentage := int(percentage)
+
+	return intPercentage
 }

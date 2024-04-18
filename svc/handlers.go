@@ -52,10 +52,22 @@ func indexHandler(c echo.Context) error {
 func tidesHandler(c echo.Context) error {
 
 	outputTideInfo := getTideInfo()
+	waterTemp := getWaterTemp()
+	var currentTide string
+	var tideLevelPercentage int
+
+	if len(outputTideInfo) == 0 {
+		currentTide = "---"
+		tideLevelPercentage = 0
+	} else {
+		currentTide = computeTideStatus(outputTideInfo[0])
+		tideLevelPercentage = computeTidePercentage(outputTideInfo[0])
+	}
+
 	res := TideInfoResponse{
-		CurrentTideHighOrLow: "High",
-		TideLevelPercentage:  "50%",
-		WaterTemp:            "70",
+		CurrentTideHighOrLow: currentTide,
+		TideLevelPercentage:  tideLevelPercentage,
+		WaterTemp:            waterTemp,
 		TideInfo:             outputTideInfo,
 	}
 
