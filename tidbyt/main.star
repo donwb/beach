@@ -35,6 +35,17 @@ def main(config):
     timezone = config.get("timezone") or "America/New_York"
     current_time = time.now().in_location(timezone)
 
+    tide_url = "https://sea-lion-app-lif8v.ondigitalocean.app/tides"
+    tide_result = http.get(url = tide_url)
+    tide_response = tide_result.body()
+    cache.set("temps", tide_result.body(), ttl_seconds = 7200)   
+
+    tide_info = json.decode(tide_response)
+    print(tide_info)
+    
+    water_temp = tide_info["waterTemp"]
+    tide_percentage = tide_info["tideLevelPercentage"]
+    currentTideHighLow = rising_or_falling(tide_info["currentTideHighOrLow"])
 
     return render.Root(
         render.Row(
@@ -65,7 +76,17 @@ def main(config):
                         children=[
                             render.Text(
                                 content = current_time.format("3:04"), color="#909d9f",
-                                font = "CG-pixel-3x5-mono"
+                                
+                            ),  
+                            render.Text(
+                                content = str(water_temp) + "F", color="#909d9f",
+                                
+                            ),
+                            render.Text(
+                                content = "R", color="#909d9f",
+                            ),
+                            render.Text(
+                                content = str(tide_percentage) + "%", color="#909d9f",
                             )
                         ]
                 )
@@ -138,3 +159,10 @@ def set_ramp_colors(nsb_ramp_dict):
 
     return colors_dict
 
+
+def rising_or_falling(currentTideHighLow):
+    if currentTideHighLow == "HIGH":
+        return "R"
+    else:
+        return "F"
+    
