@@ -80,6 +80,8 @@ func constructURL(urlType NOAAUrlType) string {
 func getNextHighAndLowTides(tideInfo TideInfoFromNOAA) []TideInfo {
 	var outputTideInfo []TideInfo
 
+	fmt.Println("Tide Info: ", tideInfo)
+
 	if len(tideInfo.Predictions) == 0 {
 		fmt.Println("No tide info")
 		return outputTideInfo
@@ -137,13 +139,15 @@ func getWaterTemp() int {
 	return waterTemp
 }
 
-func computeTideStatus(info TideInfo) string {
+func computeTideDirection(info TideInfo) string {
 	// the current tide status is the opposite of the next tide
 
 	if info.HighOrLow == "H" {
-		return "Low"
+		return "Rising"
+	} else {
+		return "Dropping"
+
 	}
-	return "High"
 }
 
 func computeTidePercentage(info TideInfo) int {

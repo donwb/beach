@@ -60,7 +60,7 @@ func tidesHandler(c echo.Context) error {
 		currentTide = "---"
 		tideLevelPercentage = 0
 	} else {
-		currentTide = computeTideStatus(outputTideInfo[0])
+		currentTide = computeTideDirection(outputTideInfo[0])
 		tideLevelPercentage = computeTidePercentage(outputTideInfo[0])
 	}
 

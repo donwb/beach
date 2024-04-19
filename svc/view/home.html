@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Responsive Colored Dots List</title>
+<title>Responsive  Dots List</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -29,6 +29,16 @@
   .yellow { background-color: yellow; }
   .grey { background-color: grey; }
 
+  .water-heading {
+    margin-top: 20px;
+    font-size: large;
+    font-weight: bold;
+    padding-bottom: 50px;
+  }
+
+  #water-info {
+    padding: 10px;
+  }
   /* Responsive adjustments */
   @media (max-width: 600px) {
     li {
@@ -40,16 +50,26 @@
     }
   }
 </style>
-<script src="static/page.js"></script>
+<script src="static/page2.js"></script>
 </head>
 <body>
 
-<h2>Current Ramp Status</h2>
+<h2>Current Ramp Status</h2> 
 
 <ul id="ramps">
   
   <!-- Add more list items here -->
 </ul>
 
+<div id="water">
+  <div id="water-info"> <span class="water-heading"> Water Info:</span>
+    <div>Water Temp: <span id="water-temp"></span></div>
+    <div>Tide Direction: <span id="tide-dir"></span></div>
+    <div>Tide Percentage: <span id="tide-percentage"></span></div>
+
+    <div>Next Tide Info:</div>
+    <div id="next-tide-info"></div>
+  </div>
+</div> 
 </body>
 </html>
