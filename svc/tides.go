@@ -161,12 +161,24 @@ func computeTidePercentage(info TideInfo) int {
 	nowHour := nowTime.Hour()
 
 	nextTideHour := nextTideTime.Hour()
-	hourDiff := nextTideHour - nowHour
+	rawHourDiff := (nextTideHour - nowHour) - 1
+	var hourDiff int
+	if rawHourDiff < 0 {
+		hourDiff = 0
+	} else {
+		hourDiff = rawHourDiff
+	}
 
-	fmt.Println("Now Hour: ", nowHour, " Next Tide Hour: ", nextTideHour, " Hour Diff: ", hourDiff)
+	fmt.Println("Now Hour: ", nowHour, " Next Tide Hour: ", nextTideHour, " Hour Diff: ", hourDiff, " Raw Hour Diff: ", rawHourDiff)
 
+	var nowMinutes int
 	tideMinutes := nextTideTime.Minute()
-	nowMinutes := 60 - nowTime.Minute()
+	if rawHourDiff < 0 {
+		nowMinutes = 0
+	} else {
+		nowMinutes = 60 - nowTime.Minute()
+	}
+	//nowMinutes := 60 - nowTime.Minute()
 
 	fmt.Println("Tide Minutes: ", tideMinutes, " Now Minutes: ", nowMinutes)
 
