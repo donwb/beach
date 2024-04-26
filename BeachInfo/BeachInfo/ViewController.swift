@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var lastStatusRefresh: UILabel!
     @IBOutlet weak var twentySeventhStatusLight: UIView!
     @IBOutlet weak var thirdaveStatusLight: UIView!
     @IBOutlet weak var flaglerStatusLight: UIView!
@@ -23,12 +24,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        // label.layer.cornerRadius = label.frame.size.width/2
+        
         let statusLights = [beachwayStatusLight, flaglerStatusLight, crawfordStatusLight, twentySeventhStatusLight, thirdaveStatusLight]
         setupStatusLights(statusLightArray: statusLights)
         
-        
+        lastStatusRefresh.text = "n/a"
     }
     
 
@@ -40,6 +40,7 @@ class ViewController: UIViewController {
         
         
         callRampStatusAPI(rampsURL: url)
+       
     }
     
     
@@ -71,6 +72,7 @@ class ViewController: UIViewController {
             self.setRampStatus(rs: rs, rampToCheck: "27TH AV", light: self.twentySeventhStatusLight, textField: self.twentySeventhStatus)
             self.setRampStatus(rs: rs, rampToCheck: "FLAGLER AV", light: self.flaglerStatusLight, textField: self.flaglerStatus)
             
+            self.setRampRefreshDate()
         }
     }
     
@@ -93,6 +95,15 @@ class ViewController: UIViewController {
             
             textField.text = currentRamp.accessStatus.rawValue
         }
+    }
+    
+    func setRampRefreshDate() {
+        let currentDateTime = Date()
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let formattedDate = dateFormatter.string(from: currentDateTime)
+        lastStatusRefresh.text = formattedDate
     }
     
     func printError(textField: UITextField) {
