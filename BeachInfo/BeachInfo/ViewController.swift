@@ -9,6 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var twentySeventhStatusLight: UIView!
+    @IBOutlet weak var thirdaveStatusLight: UIView!
+    @IBOutlet weak var flaglerStatusLight: UIView!
+    @IBOutlet weak var crawfordStatusLight: UIView!
+    @IBOutlet weak var beachwayStatusLight: UIView!
     @IBOutlet weak var twentySeventhStatus: UITextField!
     @IBOutlet weak var thirdaveStatus: UITextField!
     @IBOutlet weak var flaglerStatus: UITextField!
@@ -19,7 +24,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        // label.layer.cornerRadius = label.frame.size.width/2
+        let statusLights = [beachwayStatusLight, flaglerStatusLight, crawfordStatusLight, twentySeventhStatusLight, thirdaveStatusLight]
+        setupStatusLights(statusLightArray: statusLights)
+        
+        
     }
+    
 
 
     @IBAction func getRampStatus(_ sender: Any) {
@@ -53,41 +64,34 @@ class ViewController: UIViewController {
     
     func updateUI(rs: RampStatus) {
         DispatchQueue.main.async {
-            if let beachway = rs.first(where: {$0.rampName == "BEACHWAY AV"}){
-                self.beachwayStatus.text = beachway.accessStatus.rawValue
+            
+            self.setRampStatus(rs: rs, rampToCheck: "BEACHWAY AV", light: self.beachwayStatusLight, textField: self.beachwayStatus)
+            self.setRampStatus(rs: rs, rampToCheck: "CRAWFORD RD", light: self.crawfordStatusLight, textField: self.crawfordStatus)
+            self.setRampStatus(rs: rs, rampToCheck: "3RD AV", light: self.thirdaveStatusLight, textField: self.thirdaveStatus)
+            self.setRampStatus(rs: rs, rampToCheck: "27TH AV", light: self.twentySeventhStatusLight, textField: self.twentySeventhStatus)
+            self.setRampStatus(rs: rs, rampToCheck: "FLAGLER AV", light: self.flaglerStatusLight, textField: self.flaglerStatus)
+            
+        }
+    }
+    
+    func setupStatusLights(statusLightArray: [UIView?]) {
+        for light in statusLightArray{
+            light?.layer.cornerRadius = 12.5
+            light?.backgroundColor = UIColor.gray
+        }
+    }
+    
+    func setRampStatus(rs: RampStatus, rampToCheck: String, light: UIView, textField: UITextField) {
+        // only handling open right now
+        
+        if let currentRamp = rs.first(where: {$0.rampName == rampToCheck}) {
+            if currentRamp.accessStatus == AccessStatus.accessStatusOpen {
+                light.backgroundColor = UIColor.green
             } else {
-                self.printError(textField: self.beachwayStatus)
+                light.backgroundColor = UIColor.yellow
             }
             
-            
-            if let crawford = rs.first(where: {$0.rampName == "CRAWFORD RD"}) {
-                self.crawfordStatus.text = crawford.accessStatus.rawValue
-            } else {
-                self.printError(textField: self.crawfordStatus)
-            }
-            
-            
-            if let third = rs.first(where: {$0.rampName == "3RD AV"}) {
-                self.thirdaveStatus.text = third.accessStatus.rawValue
-            } else {
-                self.printError(textField: self.thirdaveStatus)
-            }
-            
-            
-            if let twoseven = rs.first(where: {$0.rampName == "27TH AV"}) {
-                self.twentySeventhStatus.text = twoseven.accessStatus.rawValue
-            } else {
-                self.printError(textField: self.twentySeventhStatus)
-            }
-            
-            
-            if let flagler = rs.first(where: {$0.rampName == "FLAGLER AV"}) {
-                self.flaglerStatus.text = flagler.accessStatus.rawValue
-            } else {
-                self.printError(textField: self.flaglerStatus)
-            }
-            
-            
+            textField.text = currentRamp.accessStatus.rawValue
         }
     }
     
