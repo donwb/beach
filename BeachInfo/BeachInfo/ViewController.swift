@@ -53,22 +53,46 @@ class ViewController: UIViewController {
     
     func updateUI(rs: RampStatus) {
         DispatchQueue.main.async {
-            let beachway = rs.first(where: {$0.rampName == "BEACHWAY AV"})
-            self.beachwayStatus.text = beachway?.accessStatus.rawValue
+            if let beachway = rs.first(where: {$0.rampName == "BEACHWAY AV"}){
+                self.beachwayStatus.text = beachway.accessStatus.rawValue
+            } else {
+                self.printError(textField: self.beachwayStatus)
+            }
             
-            let crawford = rs.first(where: {$0.rampName == "CRAWFORD RD"})
-            self.crawfordStatus.text = crawford?.accessStatus.rawValue
             
-            let third = rs.first(where: {$0.rampName == "3RD AV"})
-            self.thirdaveStatus.text = third?.accessStatus.rawValue
+            if let crawford = rs.first(where: {$0.rampName == "CRAWFORD RD"}) {
+                self.crawfordStatus.text = crawford.accessStatus.rawValue
+            } else {
+                self.printError(textField: self.crawfordStatus)
+            }
             
-            let twoseven = rs.first(where: {$0.rampName == "27TH AV"})
-            self.twentySeventhStatus.text = twoseven?.accessStatus.rawValue
             
-            let flagler = rs.first(where: {$0.rampName == "FLAGLER AV"})
-            self.flaglerStatus.text = flagler?.accessStatus.rawValue
+            if let third = rs.first(where: {$0.rampName == "3RD AV"}) {
+                self.thirdaveStatus.text = third.accessStatus.rawValue
+            } else {
+                self.printError(textField: self.thirdaveStatus)
+            }
+            
+            
+            if let twoseven = rs.first(where: {$0.rampName == "27TH AV"}) {
+                self.twentySeventhStatus.text = twoseven.accessStatus.rawValue
+            } else {
+                self.printError(textField: self.twentySeventhStatus)
+            }
+            
+            
+            if let flagler = rs.first(where: {$0.rampName == "FLAGLER AV"}) {
+                self.flaglerStatus.text = flagler.accessStatus.rawValue
+            } else {
+                self.printError(textField: self.flaglerStatus)
+            }
+            
             
         }
+    }
+    
+    func printError(textField: UITextField) {
+        textField.text = "Error getting status"
     }
 }
 
