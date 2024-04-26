@@ -36,11 +36,8 @@ class ViewController: UIViewController {
     @IBAction func getRampStatus(_ sender: Any) {
         
         let url = "https://sea-lion-app-lif8v.ondigitalocean.app/rampstatus"
-        // let rampStatus = try? JSONDecoder().decode(RampStatus.self, from: jsonData)
-        
         
         callRampStatusAPI(rampsURL: url)
-       
     }
     
     
@@ -100,10 +97,17 @@ class ViewController: UIViewController {
     func setRampRefreshDate() {
         let currentDateTime = Date()
         let dateFormatter = DateFormatter()
+        let timeFormatter = DateFormatter()
         
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.dateFormat = "MM-dd"
+        timeFormatter.dateFormat = "h:mm:ss"
+        
         let formattedDate = dateFormatter.string(from: currentDateTime)
-        lastStatusRefresh.text = formattedDate
+        let formattedTime = timeFormatter.string(from: currentDateTime)
+        
+        let timestamp = "\(formattedTime) on \(formattedDate)"
+        
+        lastStatusRefresh.text = timestamp
     }
     
     func printError(textField: UITextField) {

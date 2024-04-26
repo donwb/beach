@@ -17,7 +17,7 @@ def main(config):
     print("Using font: '{}'".format(font))
 
     #call api to get data before render
-    # baseURL = "http://localhost:1323/current"
+    # baseURL = "http://localhost:1323/rampstatus"
     baseURL = "https://sea-lion-app-lif8v.ondigitalocean.app/rampstatus"
     api_result = http.get(url = baseURL)
     api_response = api_result.body()
@@ -35,6 +35,7 @@ def main(config):
     timezone = config.get("timezone") or "America/New_York"
     current_time = time.now().in_location(timezone)
 
+    # tide_url = "http://localhost:1323/tides"
     tide_url = "https://sea-lion-app-lif8v.ondigitalocean.app/tides"
     tide_result = http.get(url = tide_url)
     tide_response = tide_result.body()
@@ -83,7 +84,7 @@ def main(config):
                                 
                             ),
                             render.Text(
-                                content = "R", color="#909d9f",
+                                content = currentTideHighLow, color="#909d9f",
                             ),
                             render.Text(
                                 content = str(tide_percentage) + "%", color="#909d9f",
@@ -161,8 +162,9 @@ def set_ramp_colors(nsb_ramp_dict):
 
 
 def rising_or_falling(currentTideHighLow):
-    if currentTideHighLow == "HIGH":
-        return "R"
-    else:
+    print(currentTideHighLow)
+    if currentTideHighLow == "Dropping":
         return "F"
+    else:
+        return "R"
     

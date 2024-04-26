@@ -159,14 +159,21 @@ func computeTidePercentage(info TideInfo) int {
 
 	// break down the time into hours and minutes
 	nowHour := nowTime.Hour()
+
 	nextTideHour := nextTideTime.Hour()
 	hourDiff := nextTideHour - nowHour
+
+	fmt.Println("Now Hour: ", nowHour, " Next Tide Hour: ", nextTideHour, " Hour Diff: ", hourDiff)
 
 	tideMinutes := nextTideTime.Minute()
 	nowMinutes := 60 - nowTime.Minute()
 
+	fmt.Println("Tide Minutes: ", tideMinutes, " Now Minutes: ", nowMinutes)
+
 	// using the constant tideMinuteLength, calculate the percentage of the tide that has passed
 	totalMinutesToNextTide := (((hourDiff * 60) + tideMinutes) + nowMinutes)
+	fmt.Println("Total Minutes to Next Tide: ", totalMinutesToNextTide)
+
 	minutesSinceLastTide := tideMinuteLength - totalMinutesToNextTide
 	percentage := (float64(minutesSinceLastTide) / float64(tideMinuteLength)) * 100
 
