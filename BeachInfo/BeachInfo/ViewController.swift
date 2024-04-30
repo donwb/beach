@@ -43,6 +43,9 @@ class ViewController: UIViewController {
         let url = "https://sea-lion-app-lif8v.ondigitalocean.app/rampstatus"
         let tidesURL = "https://sea-lion-app-lif8v.ondigitalocean.app/tides"
         
+        refreshStatusLights()
+        refreshLabels()
+        
         callRampStatusAPI(rampsURL: url)
         
         callTideStatusAPI(tideURL: tidesURL)
@@ -58,6 +61,7 @@ class ViewController: UIViewController {
             if let error = error {
                 print(error)
                 print("oh shit!, there was an error calling the API")
+                self.printError(errorLabel: self.beachwayLabel, errorMessage: "Error getting ramp status")
             } else
             if let data = data {
                 let rs: RampStatus = try! JSONDecoder().decode(RampStatus.self, from: data)
@@ -77,6 +81,7 @@ class ViewController: UIViewController {
             if let error = error {
                 print(error)
                 print("TIDES: there was an error calling the API")
+                self.printError(errorLabel: self.crawfordLabel, errorMessage: "Error getting tide status")
             } else
             if let data = data {
                 let ts: TideStatus = try! JSONDecoder().decode(TideStatus.self, from: data)
@@ -121,14 +126,20 @@ class ViewController: UIViewController {
         // only handling open right now
         
         if let currentRamp = rs.first(where: {$0.rampName == rampToCheck}) {
-            if currentRamp.accessStatus == AccessStatus.accessStatusOpen {
+            switch currentRamp.accessStatus {
+            case AccessStatus.accessStatusOpen:
                 light.backgroundColor = UIColor.green
-            } else {
+            case AccessStatus.accessStatus4X4Only, AccessStatus.closingInProgress:
                 light.backgroundColor = UIColor.yellow
+            case AccessStatus.accessStatusClosed, AccessStatus.closedForHighTide:
+                light.backgroundColor = UIColor.red
             }
+        
+            let ucaseMessage = currentRamp.accessStatus.rawValue
+            let msg = ucaseMessage.capitalized
             
             //textField.text = currentRamp.accessStatus.rawValue
-            rampStatusLabel.text = currentRamp.accessStatus.rawValue
+            rampStatusLabel.text = msg
         }
     }
     
@@ -143,13 +154,27 @@ class ViewController: UIViewController {
         let formattedDate = dateFormatter.string(from: currentDateTime)
         let formattedTime = timeFormatter.string(from: currentDateTime)
         
-        let timestamp = "\(formattedTime) on \(formattedDate)"
+        let timestamp = "Last Refresh: \(formattedTime)"
         
         lastStatusRefresh.text = timestamp
     }
     
-    func printError(textField: UITextField) {
-        textField.text = "Error getting status"
+    func printError(errorLabel: UILabel, errorMessage: String) {
+        errorLabel.text = errorMessage
+    }
+    
+    func refreshStatusLights() {
+        let statusLights = [beachwayStatusLight, flaglerStatusLight, crawfordStatusLight, twentySeventhStatusLight, thirdaveStatusLight]
+        for light in statusLights {
+            light?.backgroundColor = UIColor.white
+        }
+    }
+    
+    func refreshLabels() {
+        let labels = [beachwayLabel, crawfordLabel, thirdaveLabel, twosevenLabel, flaglerLabel]
+        for l in labels {
+            l?.text = ""
+        }
     }
 }
 
