@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED0F03112BDC45CD00DEB886 /* TideStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0F03102BDC45CD00DEB886 /* TideStatus.swift */; };
+		ED27CA5A2BE298970034A285 /* TideInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED27CA592BE298970034A285 /* TideInfoTableViewCell.swift */; };
 		ED9A0C8D2BDBD6DD00696A0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9A0C8C2BDBD6DD00696A0D /* AppDelegate.swift */; };
 		ED9A0C8F2BDBD6DD00696A0D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9A0C8E2BDBD6DD00696A0D /* SceneDelegate.swift */; };
 		ED9A0C912BDBD6DD00696A0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9A0C902BDBD6DD00696A0D /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		ED0F03102BDC45CD00DEB886 /* TideStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideStatus.swift; sourceTree = "<group>"; };
+		ED27CA592BE298970034A285 /* TideInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideInfoTableViewCell.swift; sourceTree = "<group>"; };
 		ED9A0C892BDBD6DD00696A0D /* BeachInfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeachInfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED9A0C8C2BDBD6DD00696A0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED9A0C8E2BDBD6DD00696A0D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				ED9A0C9D2BDBD6DE00696A0D /* Info.plist */,
 				ED9A0C952BDBD6DD00696A0D /* BeachInfo.xcdatamodeld */,
 				ED0F03102BDC45CD00DEB886 /* TideStatus.swift */,
+				ED27CA592BE298970034A285 /* TideInfoTableViewCell.swift */,
 			);
 			path = BeachInfo;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				ED9A0C912BDBD6DD00696A0D /* ViewController.swift in Sources */,
 				ED0F03112BDC45CD00DEB886 /* TideStatus.swift in Sources */,
 				ED9A0CC02BDBDAF400696A0D /* RampStatus.swift in Sources */,
+				ED27CA5A2BE298970034A285 /* TideInfoTableViewCell.swift in Sources */,
 				ED9A0C972BDBD6DD00696A0D /* BeachInfo.xcdatamodeld in Sources */,
 				ED9A0C8D2BDBD6DD00696A0D /* AppDelegate.swift in Sources */,
 				ED9A0C8F2BDBD6DD00696A0D /* SceneDelegate.swift in Sources */,

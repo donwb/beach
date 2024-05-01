@@ -169,6 +169,42 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="NyJ-Jn-5lL">
+                                <rect key="frame" x="20" y="562" width="390" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="cQH-2k-dlo" customClass="TideInfoTableViewCell" customModule="BeachInfo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="51.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cQH-2k-dlo" id="tGA-BJ-Sr5">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="51.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNA-al-mxZ">
+                                                    <rect key="frame" x="20" y="16" width="69" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKF-Uj-Pgf">
+                                                    <rect key="frame" x="86" y="17" width="284" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tableTideDirectionLabel" destination="qNA-al-mxZ" id="lC0-Rn-BcT"/>
+                                            <outlet property="tableTideTimeLabel" destination="kKF-Uj-Pgf" id="NdS-K9-I9H"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -185,6 +221,7 @@
                         <outlet property="thirdaveStatusLight" destination="QT2-Bf-ClR" id="6k4-FT-MBP"/>
                         <outlet property="tideDirectionLabel" destination="9km-gc-HBx" id="o9J-qj-oLg"/>
                         <outlet property="tidePercentageLabel" destination="K3J-8R-SNT" id="mmk-UF-aI6"/>
+                        <outlet property="tidesTable" destination="NyJ-Jn-5lL" id="XAs-4w-jgm"/>
                         <outlet property="twentySeventhStatusLight" destination="c4E-nk-RPH" id="SDG-fh-tAa"/>
                         <outlet property="twosevenLabel" destination="mIu-K8-zqn" id="s5Z-yR-6ji"/>
                         <outlet property="waterTempLabel" destination="8nt-8b-hlL" id="Lbl-yL-eBO"/>

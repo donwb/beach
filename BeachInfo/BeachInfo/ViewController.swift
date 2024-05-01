@@ -7,9 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
+    @IBOutlet weak var tidesTable: UITableView!
     @IBOutlet weak var waterTempLabel: UILabel!
     @IBOutlet weak var tidePercentageLabel: UILabel!
     @IBOutlet weak var tideDirectionLabel: UILabel!
@@ -25,10 +26,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var crawfordStatusLight: UIView!
     @IBOutlet weak var beachwayStatusLight: UIView!
   
+    var tideInfoArray: [TideInfo]!
+    let cellReuseIdentifier = "cell"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tidesTable.dataSource = self
+        tidesTable.delegate = self
+        
+        tidesTable.register(TideInfoTableViewCell.self, forCellReuseIdentifier: "CustomCell")
+
+        // Register your custom UITableViewCell if needed
+        // tableView.register(YourCustomCellClass.self, forCellReuseIdentifier: "CellIdentifier")
         
         let statusLights = [beachwayStatusLight, flaglerStatusLight, crawfordStatusLight, twentySeventhStatusLight, thirdaveStatusLight]
         setupStatusLights(statusLightArray: statusLights)
@@ -124,6 +135,9 @@ class ViewController: UIViewController {
             self.tideDirectionLabel.text = tideInfo.currentTideHighOrLow
             self.tidePercentageLabel.text = "\(tideInfo.tideLevelPercentage)%"
             self.waterTempLabel.text = "\(tideInfo.waterTemp)°"
+            
+            self.tideInfoArray = tideInfo.tideInfo
+            self.tidesTable.reloadData()
         }
     }
     
@@ -187,6 +201,38 @@ class ViewController: UIViewController {
         for l in labels {
             l?.text = ""
         }
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tideInfoArray != nil {
+            return tideInfoArray.count
+        } else {
+            return 0
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! TideInfoTableViewCell
+        //let cell:MyCustomCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! MyCustomCell
+        let cell:TideInfoTableViewCell = self.tidesTable.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! TideInfoTableViewCell
+        
+        // Configure the cell
+        let tideDateFormatter = DateFormatter()
+        tideDateFormatter.timeStyle = .short
+        let formattedDate = tideDateFormatter.string(from: tideInfoArray[indexPath.row].tideDateTime)
+        
+        cell.tableTideDirectionLabel?.text = "Hi"
+        cell.tableTideTimeLabel?.text = formattedDate
+        
+        return cell
+    }
+
+    // MARK: - UITableViewDelegate methods
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Handle row selection if needed
+        print("You tapped cell number \(indexPath.row).")
     }
 }
 
