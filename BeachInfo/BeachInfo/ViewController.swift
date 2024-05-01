@@ -35,11 +35,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         tidesTable.dataSource = self
         tidesTable.delegate = self
-        
         tidesTable.register(TideInfoTableViewCell.self, forCellReuseIdentifier: "CustomCell")
-
-        // Register your custom UITableViewCell if needed
-        // tableView.register(YourCustomCellClass.self, forCellReuseIdentifier: "CellIdentifier")
         
         let statusLights = [beachwayStatusLight, flaglerStatusLight, crawfordStatusLight, twentySeventhStatusLight, thirdaveStatusLight]
         setupStatusLights(statusLightArray: statusLights)
@@ -81,6 +77,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 } catch {
                     self.printError(errorLabel: self.beachwayLabel, errorMessage: "Error: Decoding Ramps")
                 }
+            } else {
+                print("data was not actually equal to data")
             }
             
         }.resume()
