@@ -88,9 +88,13 @@ class ViewController: UIViewController {
             } else
             if let data = data {
                 do {
-                    let ts: TideStatus = try JSONDecoder().decode(TideStatus.self, from: data)
+                    // have to set the decoding strategy to .iso8601 to support timezone offsets
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                    let ts: TideStatus = try decoder.decode(TideStatus.self, from: data)
                     self.updateTideUI(tideInfo: ts)
                 } catch  {
+                    print(error)
                     self.printError(errorLabel: self.crawfordLabel, errorMessage: "Error: Decoding Tides")
                 }
                 

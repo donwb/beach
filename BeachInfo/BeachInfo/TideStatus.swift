@@ -4,7 +4,7 @@ import Foundation
 struct TideStatus: Codable {
     let currentTideHighOrLow: String
     let tideLevelPercentage, waterTemp: Int
-    //let tideInfo: [TideInfo]
+    let tideInfo: [TideInfo]
 }
 
 // MARK: - TideInfo
