@@ -64,9 +64,12 @@ class ViewController: UIViewController {
                 self.printError(errorLabel: self.beachwayLabel, errorMessage: "Error getting ramp status")
             } else
             if let data = data {
-                let rs: RampStatus = try! JSONDecoder().decode(RampStatus.self, from: data)
-                self.updateUI(rs: rs)
-    
+                do {
+                    let rs: RampStatus = try JSONDecoder().decode(RampStatus.self, from: data)
+                    self.updateUI(rs: rs)
+                } catch {
+                    self.printError(errorLabel: self.beachwayLabel, errorMessage: "Error: Decoding Ramps")
+                }
             }
             
         }.resume()
@@ -84,8 +87,13 @@ class ViewController: UIViewController {
                 self.printError(errorLabel: self.crawfordLabel, errorMessage: "Error getting tide status")
             } else
             if let data = data {
-                let ts: TideStatus = try! JSONDecoder().decode(TideStatus.self, from: data)
-                self.updateTideUI(tideInfo: ts)
+                do {
+                    let ts: TideStatus = try JSONDecoder().decode(TideStatus.self, from: data)
+                    self.updateTideUI(tideInfo: ts)
+                } catch  {
+                    self.printError(errorLabel: self.crawfordLabel, errorMessage: "Error: Decoding Tides")
+                }
+                
     
             }
             
