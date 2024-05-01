@@ -33,10 +33,17 @@ type TideInfo struct {
 }
 
 type TideInfoResponse struct {
-	CurrentTideHighOrLow string     `json:"currentTideHighOrLow"`
-	TideLevelPercentage  int        `json:"tideLevelPercentage"`
-	WaterTemp            int        `json:"waterTemp"`
-	TideInfo             []TideInfo `json:"tideInfo"`
+	CurrentTideHighOrLow string          `json:"currentTideHighOrLow"`
+	TideLevelPercentage  int             `json:"tideLevelPercentage"`
+	WaterTemp            int             `json:"waterTemp"`
+	TideInfo             []TideInfo      `json:"tideInfo"`
+	WaterTemps           []WaterTempInfo `json:"waterTemps"`
+}
+
+type WaterTempInfo struct {
+	StationID   string `json:"stationID"`
+	StationName string `json:"stationName"`
+	WaterTemp   int    `json:"waterTemp"`
 }
 
 type WaterTempFromNOAA struct {

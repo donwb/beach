@@ -16,6 +16,7 @@ type NOAAUrlType int
 const (
 	DailyTides NOAAUrlType = iota // iota starts at 0
 	WaterTemp
+	WaterTempJax
 )
 
 func getTideInfo() []TideInfo {
@@ -61,13 +62,18 @@ func constructURL(urlType NOAAUrlType) string {
 	params.Add("units", "english")
 	params.Add("format", "json")
 
-	if urlType == DailyTides {
+	switch urlType {
+	case DailyTides:
 		params.Add("station", "8721164")
 		params.Add("product", "predictions")
 		params.Add("datum", "MLLW")
 		params.Add("interval", "hilo")
-	} else {
+	case WaterTemp:
 		params.Add("station", "8721604")
+		params.Add("product", "water_temperature")
+		params.Add("interval", "h")
+	case WaterTempJax:
+		params.Add("station", "8720218")
 		params.Add("product", "water_temperature")
 		params.Add("interval", "h")
 	}
@@ -111,31 +117,52 @@ func getNextHighAndLowTides(tideInfo TideInfoFromNOAA) []TideInfo {
 	return outputTideInfo
 }
 
-func getWaterTemp() int {
+func getWaterTemp() (int, int) {
 
 	//https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date=20240415&end_date=20240415&station=8721604&product=water_temperature&time_zone=lst_ldt&interval=h&units=english&format=json
 	url := constructURL(WaterTemp)
+	jaxUrl := constructURL(WaterTempJax)
 
+	// Get water temp from Canaveral
 	resp, err := http.Get(url)
 	checkError(err, "WaterTemp:: Error getting response")
 
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
-	checkError(err, "WaterTemp:: Error reading response body")
+	checkError(err, "WaterTemp:Canaveral: Error reading response body")
 
 	var waterTempFromNOAA WaterTempFromNOAA
 	err = json.Unmarshal(body, &waterTempFromNOAA)
-	checkError(err, "WaterTemp:: Error unmarshalling json")
+	checkError(err, "WaterTemp:Canaveral: Error unmarshalling json")
+
+	// Get water temp from Jax
+	jaxResp, err := http.Get(jaxUrl)
+	checkError(err, "WaterTemp:Jax: Error getting response")
+
+	defer jaxResp.Body.Close()
+
+	jaxBody, err := ioutil.ReadAll(jaxResp.Body)
+	checkError(err, "WaterTemp:: Error reading response body")
+
+	var jaxWaterTempFromNOAA WaterTempFromNOAA
+	err = json.Unmarshal(jaxBody, &jaxWaterTempFromNOAA)
+	checkError(err, "WaterTemp:Jax: Error unmarshalling json")
 
 	// convert water temp to int
+	waterTemp := waterTempToInt(waterTempFromNOAA)
+	jaxWaterTemp := waterTempToInt(jaxWaterTempFromNOAA)
+
+	return waterTemp, jaxWaterTemp
+}
+
+func waterTempToInt(waterTempFromNOAA WaterTempFromNOAA) int {
 	tempToUse := waterTempFromNOAA.Data[6].V
 	decimalIndex := strings.Index(tempToUse, ".")
 	strTemp := tempToUse[:decimalIndex]
 
 	waterTemp, err := strconv.Atoi(strTemp)
 	checkError(err, "WaterTemp:: Error converting water temp to int")
-
 	return waterTemp
 }
 

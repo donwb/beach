@@ -52,7 +52,19 @@ func indexHandler(c echo.Context) error {
 func tidesHandler(c echo.Context) error {
 
 	outputTideInfo := getTideInfo()
-	waterTemp := getWaterTemp()
+	waterTemp, jaxWaterTemp := getWaterTemp()
+
+	jax := WaterTempInfo{
+		StationID:   "8720218",
+		StationName: "Jacksonville",
+		WaterTemp:   jaxWaterTemp,
+	}
+	canaveral := WaterTempInfo{
+		StationID:   "8721604",
+		StationName: "Canaveral",
+		WaterTemp:   waterTemp,
+	}
+
 	var currentTide string
 	var tideLevelPercentage int
 
@@ -69,6 +81,7 @@ func tidesHandler(c echo.Context) error {
 		TideLevelPercentage:  tideLevelPercentage,
 		WaterTemp:            waterTemp,
 		TideInfo:             outputTideInfo,
+		WaterTemps:           []WaterTempInfo{canaveral, jax},
 	}
 
 	return c.JSON(200, res)
