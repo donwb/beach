@@ -50,6 +50,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let url = "https://sea-lion-app-lif8v.ondigitalocean.app/rampstatus"
         let tidesURL = "https://sea-lion-app-lif8v.ondigitalocean.app/tides"
         
+        /*
+        let url = "http://localhost:1323/rampstatus"
+        let tidesURL = "http://localhost:1323/tides"
+        */
+        
         refreshStatusLights()
         refreshLabels()
         
