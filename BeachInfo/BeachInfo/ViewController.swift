@@ -213,16 +213,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! TideInfoTableViewCell
-        //let cell:MyCustomCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! MyCustomCell
         let cell:TideInfoTableViewCell = self.tidesTable.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! TideInfoTableViewCell
         
         // Configure the cell
         let tideDateFormatter = DateFormatter()
         tideDateFormatter.timeStyle = .short
         let formattedDate = tideDateFormatter.string(from: tideInfoArray[indexPath.row].tideDateTime)
+        let tideDirection = tideInfoArray[indexPath.row].highOrLow
+        let tideDirectionString = tideDirection == "H" ? "High" : "Low"
         
-        cell.tableTideDirectionLabel?.text = "Hi"
+        cell.tableTideDirectionLabel?.text = tideDirectionString
         cell.tableTideTimeLabel?.text = formattedDate
         
         return cell
