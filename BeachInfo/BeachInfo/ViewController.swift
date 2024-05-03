@@ -132,12 +132,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func updateTideUI(tideInfo: TideStatus) {
+        
         DispatchQueue.main.async {
-            
-           print(tideInfo)
+            // all this mutable insanity in order to compute the min/max/averge after the api call
+            // i'm guessing there's a better way
+            var mutableTideInfo = tideInfo
+
             self.tideDirectionLabel.text = tideInfo.currentTideHighOrLow
             self.tidePercentageLabel.text = "\(tideInfo.tideLevelPercentage)%"
-            self.waterTempLabel.text = "\(tideInfo.waterTemp)°"
+            
+            
+            mutableTideInfo = TideStatus.computeCurrentWaterStats(tideStatus: mutableTideInfo)
+            if let waterStats = mutableTideInfo.currentWaterStats {
+                let waterTempDetails = "\(waterStats.average)° - (\(waterStats.allTemps[0])°, \(waterStats.allTemps[1])°)"
+                self.waterTempLabel.text = waterTempDetails
+            }
             
             self.tideInfoArray = tideInfo.tideInfo
             self.tidesTable.reloadData()
@@ -206,6 +215,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    // MARK: - UITableViewDelegate methods
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tideInfoArray != nil {
             return tideInfoArray.count
@@ -231,7 +242,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
 
-    // MARK: - UITableViewDelegate methods
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Handle row selection if needed
