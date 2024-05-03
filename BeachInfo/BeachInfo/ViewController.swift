@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
+    @IBOutlet weak var tideProgressView: UIProgressView!
     @IBOutlet weak var tidesTable: UITableView!
     @IBOutlet weak var waterTempLabel: UILabel!
     @IBOutlet weak var tidePercentageLabel: UILabel!
@@ -41,20 +42,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setupStatusLights(statusLightArray: statusLights)
         
         lastStatusRefresh.text = "n/a"
+        tideProgressView.progress = 0.0
+        tideProgressView.transform = tideProgressView.transform.scaledBy(x: 1, y: 7)
+        
+        loadFromAPI()
     }
     
-
-
     @IBAction func getRampStatus(_ sender: Any) {
         
+        loadFromAPI()
+    }
+
+
+    func loadFromAPI() {
         let url = "https://sea-lion-app-lif8v.ondigitalocean.app/rampstatus"
         let tidesURL = "https://sea-lion-app-lif8v.ondigitalocean.app/tides"
         
         /*
-        let url = "http://localhost:1323/rampstatus"
-        let tidesURL = "http://localhost:1323/tides"
-        */
+         let url = "http://localhost:1323/rampstatus"
+         let tidesURL = "http://localhost:1323/tides"
+         */
         
+        lastStatusRefresh.text = "Loading....."
         refreshStatusLights()
         refreshLabels()
         
@@ -62,6 +71,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         callTideStatusAPI(tideURL: tidesURL)
     }
+    
+    
     
     
     func callRampStatusAPI(rampsURL: String) {
@@ -140,6 +151,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
             self.tideDirectionLabel.text = tideInfo.currentTideHighOrLow
             self.tidePercentageLabel.text = "\(tideInfo.tideLevelPercentage)%"
+            
+            // the tide progress view should rise and fall as the tide does
+            // so it's the percentage when rising and the invert of the percentage when falling
+            if tideInfo.currentTideHighOrLow == "Dropping" {
+                let invertPercentage = 100 - tideInfo.tideLevelPercentage
+                self.tideProgressView.progress = Float(invertPercentage) / Float(100)
+            } else {
+                self.tideProgressView.progress = Float(tideInfo.tideLevelPercentage) / Float(100)
+            }
+            
             
             
             mutableTideInfo = TideStatus.computeCurrentWaterStats(tideStatus: mutableTideInfo)
