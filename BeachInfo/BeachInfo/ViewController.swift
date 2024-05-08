@@ -10,6 +10,8 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
+    @IBOutlet weak var tideDirectionImageView: UIImageView!
+    @IBOutlet weak var tideSymbolDirectionLabel: UILabel!
     @IBOutlet weak var tideProgressView: UIProgressView!
     @IBOutlet weak var tidesTable: UITableView!
     @IBOutlet weak var waterTempLabel: UILabel!
@@ -42,6 +44,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setupStatusLights(statusLightArray: statusLights)
         
         lastStatusRefresh.text = "n/a"
+        
         tideProgressView.progress = 0.0
         tideProgressView.transform = tideProgressView.transform.scaledBy(x: 1, y: 7)
         
@@ -157,8 +160,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if tideInfo.currentTideHighOrLow == "Dropping" {
                 let invertPercentage = 100 - tideInfo.tideLevelPercentage
                 self.tideProgressView.progress = Float(invertPercentage) / Float(100)
+                
+                let tideDirectionImage = UIImage(systemName: "arrow.backward.circle.fill")
+                self.tideDirectionImageView.image = tideDirectionImage
             } else {
                 self.tideProgressView.progress = Float(tideInfo.tideLevelPercentage) / Float(100)
+                let tideDirectionImage = UIImage(systemName: "arrow.forward.circle.fill")
+                self.tideDirectionImageView.image = tideDirectionImage
             }
             
             
@@ -190,7 +198,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 light.backgroundColor = UIColor.green
             case AccessStatus.accessStatus4X4Only, AccessStatus.closingInProgress:
                 light.backgroundColor = UIColor.yellow
-            case AccessStatus.accessStatusClosed, AccessStatus.closedForHighTide:
+            case AccessStatus.accessStatusClosed, AccessStatus.closedForHighTide, AccessStatus.closedAtCapacity, AccessStatus.closedClearedForTurtles:
                 light.backgroundColor = UIColor.red
             }
         

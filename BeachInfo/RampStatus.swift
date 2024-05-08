@@ -15,6 +15,8 @@ enum AccessStatus: String, Codable {
     case accessStatusClosed = "CLOSED"
     case closedForHighTide = "CLOSED FOR HIGH TIDE"
     case closingInProgress = "CLOSING IN PROGRESS"
+    case closedClearedForTurtles = "CLOSED - CLEARED FOR TURTLES"
+    case closedAtCapacity = "CLOSED - AT CAPACITY"
 }
 
 typealias RampStatus = [RampStatusElement]
