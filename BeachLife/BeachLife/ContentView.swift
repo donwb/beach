@@ -25,6 +25,8 @@ struct ContentView: View {
     @State private var thirdLightColor: Color = .gray
     @State private var twentyLightColor: Color = .gray
 
+    @State private var lastRefreshTime: String = "....."
+    
     var body: some View {
     
         VStack(alignment: .leading) {
@@ -80,6 +82,7 @@ struct ContentView: View {
                         .foregroundColor(.white) // Sets text color
                         .cornerRadius(8) // Rounds the corners of the button background
                 }
+            Text(lastRefreshTime)
             Spacer()
         } .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -172,6 +175,12 @@ struct ContentView: View {
         self.twentyLightColor = currentRampInfo.statusColor
         self.twentyStatusText = currentRampInfo.statusLabel
        
+        //self.lastRefreshTime = Date().no
+        let now = Date()
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "h:mm:ss"
+        let formattedTime = timeFormatter.string(from: now)
+        self.lastRefreshTime = formattedTime
         
     }
 }
