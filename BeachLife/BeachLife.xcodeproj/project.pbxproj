@@ -1,0 +1,630 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ED2F6FE82BEEC98300D57BFD /* BeachLifeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2F6FE72BEEC98300D57BFD /* BeachLifeApp.swift */; };
+		ED2F6FEA2BEEC98300D57BFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2F6FE92BEEC98300D57BFD /* ContentView.swift */; };
+		ED2F6FEC2BEEC98300D57BFD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2F6FEB2BEEC98300D57BFD /* Item.swift */; };
+		ED2F6FEE2BEEC98400D57BFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2F6FED2BEEC98400D57BFD /* Assets.xcassets */; };
+		ED2F6FF22BEEC98400D57BFD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED2F6FF12BEEC98400D57BFD /* Preview Assets.xcassets */; };
+		ED2F6FFC2BEEC98400D57BFD /* BeachLifeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2F6FFB2BEEC98400D57BFD /* BeachLifeTests.swift */; };
+		ED2F70062BEEC98400D57BFD /* BeachLifeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2F70052BEEC98400D57BFD /* BeachLifeUITests.swift */; };
+		ED2F70082BEEC98400D57BFD /* BeachLifeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2F70072BEEC98400D57BFD /* BeachLifeUITestsLaunchTests.swift */; };
+		EDEB1CFA2BEECF8000AB0815 /* RampStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDEB1CF92BEECF8000AB0815 /* RampStatus.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ED2F6FF82BEEC98400D57BFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED2F6FDC2BEEC98300D57BFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED2F6FE32BEEC98300D57BFD;
+			remoteInfo = BeachLife;
+		};
+		ED2F70022BEEC98400D57BFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ED2F6FDC2BEEC98300D57BFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ED2F6FE32BEEC98300D57BFD;
+			remoteInfo = BeachLife;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ED2F6FE42BEEC98300D57BFD /* BeachLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeachLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED2F6FE72BEEC98300D57BFD /* BeachLifeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachLifeApp.swift; sourceTree = "<group>"; };
+		ED2F6FE92BEEC98300D57BFD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ED2F6FEB2BEEC98300D57BFD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		ED2F6FED2BEEC98400D57BFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ED2F6FEF2BEEC98400D57BFD /* BeachLife.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BeachLife.entitlements; sourceTree = "<group>"; };
+		ED2F6FF12BEEC98400D57BFD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ED2F6FF72BEEC98400D57BFD /* BeachLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeachLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED2F6FFB2BEEC98400D57BFD /* BeachLifeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachLifeTests.swift; sourceTree = "<group>"; };
+		ED2F70012BEEC98400D57BFD /* BeachLifeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeachLifeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED2F70052BEEC98400D57BFD /* BeachLifeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachLifeUITests.swift; sourceTree = "<group>"; };
+		ED2F70072BEEC98400D57BFD /* BeachLifeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachLifeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EDEB1CF92BEECF8000AB0815 /* RampStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RampStatus.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ED2F6FE12BEEC98300D57BFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED2F6FF42BEEC98400D57BFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED2F6FFE2BEEC98400D57BFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ED2F6FDB2BEEC98300D57BFD = {
+			isa = PBXGroup;
+			children = (
+				ED2F6FE62BEEC98300D57BFD /* BeachLife */,
+				ED2F6FFA2BEEC98400D57BFD /* BeachLifeTests */,
+				ED2F70042BEEC98400D57BFD /* BeachLifeUITests */,
+				ED2F6FE52BEEC98300D57BFD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ED2F6FE52BEEC98300D57BFD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ED2F6FE42BEEC98300D57BFD /* BeachLife.app */,
+				ED2F6FF72BEEC98400D57BFD /* BeachLifeTests.xctest */,
+				ED2F70012BEEC98400D57BFD /* BeachLifeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ED2F6FE62BEEC98300D57BFD /* BeachLife */ = {
+			isa = PBXGroup;
+			children = (
+				ED2F6FE72BEEC98300D57BFD /* BeachLifeApp.swift */,
+				ED2F6FE92BEEC98300D57BFD /* ContentView.swift */,
+				ED2F6FEB2BEEC98300D57BFD /* Item.swift */,
+				ED2F6FED2BEEC98400D57BFD /* Assets.xcassets */,
+				ED2F6FEF2BEEC98400D57BFD /* BeachLife.entitlements */,
+				ED2F6FF02BEEC98400D57BFD /* Preview Content */,
+				EDEB1CF92BEECF8000AB0815 /* RampStatus.swift */,
+			);
+			path = BeachLife;
+			sourceTree = "<group>";
+		};
+		ED2F6FF02BEEC98400D57BFD /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				ED2F6FF12BEEC98400D57BFD /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ED2F6FFA2BEEC98400D57BFD /* BeachLifeTests */ = {
+			isa = PBXGroup;
+			children = (
+				ED2F6FFB2BEEC98400D57BFD /* BeachLifeTests.swift */,
+			);
+			path = BeachLifeTests;
+			sourceTree = "<group>";
+		};
+		ED2F70042BEEC98400D57BFD /* BeachLifeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ED2F70052BEEC98400D57BFD /* BeachLifeUITests.swift */,
+				ED2F70072BEEC98400D57BFD /* BeachLifeUITestsLaunchTests.swift */,
+			);
+			path = BeachLifeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ED2F6FE32BEEC98300D57BFD /* BeachLife */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED2F700B2BEEC98400D57BFD /* Build configuration list for PBXNativeTarget "BeachLife" */;
+			buildPhases = (
+				ED2F6FE02BEEC98300D57BFD /* Sources */,
+				ED2F6FE12BEEC98300D57BFD /* Frameworks */,
+				ED2F6FE22BEEC98300D57BFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeachLife;
+			productName = BeachLife;
+			productReference = ED2F6FE42BEEC98300D57BFD /* BeachLife.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ED2F6FF62BEEC98400D57BFD /* BeachLifeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED2F700E2BEEC98400D57BFD /* Build configuration list for PBXNativeTarget "BeachLifeTests" */;
+			buildPhases = (
+				ED2F6FF32BEEC98400D57BFD /* Sources */,
+				ED2F6FF42BEEC98400D57BFD /* Frameworks */,
+				ED2F6FF52BEEC98400D57BFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED2F6FF92BEEC98400D57BFD /* PBXTargetDependency */,
+			);
+			name = BeachLifeTests;
+			productName = BeachLifeTests;
+			productReference = ED2F6FF72BEEC98400D57BFD /* BeachLifeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ED2F70002BEEC98400D57BFD /* BeachLifeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ED2F70112BEEC98400D57BFD /* Build configuration list for PBXNativeTarget "BeachLifeUITests" */;
+			buildPhases = (
+				ED2F6FFD2BEEC98400D57BFD /* Sources */,
+				ED2F6FFE2BEEC98400D57BFD /* Frameworks */,
+				ED2F6FFF2BEEC98400D57BFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ED2F70032BEEC98400D57BFD /* PBXTargetDependency */,
+			);
+			name = BeachLifeUITests;
+			productName = BeachLifeUITests;
+			productReference = ED2F70012BEEC98400D57BFD /* BeachLifeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED2F6FDC2BEEC98300D57BFD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					ED2F6FE32BEEC98300D57BFD = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					ED2F6FF62BEEC98400D57BFD = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = ED2F6FE32BEEC98300D57BFD;
+					};
+					ED2F70002BEEC98400D57BFD = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = ED2F6FE32BEEC98300D57BFD;
+					};
+				};
+			};
+			buildConfigurationList = ED2F6FDF2BEEC98300D57BFD /* Build configuration list for PBXProject "BeachLife" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ED2F6FDB2BEEC98300D57BFD;
+			productRefGroup = ED2F6FE52BEEC98300D57BFD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ED2F6FE32BEEC98300D57BFD /* BeachLife */,
+				ED2F6FF62BEEC98400D57BFD /* BeachLifeTests */,
+				ED2F70002BEEC98400D57BFD /* BeachLifeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ED2F6FE22BEEC98300D57BFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED2F6FF22BEEC98400D57BFD /* Preview Assets.xcassets in Resources */,
+				ED2F6FEE2BEEC98400D57BFD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED2F6FF52BEEC98400D57BFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED2F6FFF2BEEC98400D57BFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ED2F6FE02BEEC98300D57BFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED2F6FEA2BEEC98300D57BFD /* ContentView.swift in Sources */,
+				ED2F6FEC2BEEC98300D57BFD /* Item.swift in Sources */,
+				ED2F6FE82BEEC98300D57BFD /* BeachLifeApp.swift in Sources */,
+				EDEB1CFA2BEECF8000AB0815 /* RampStatus.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED2F6FF32BEEC98400D57BFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED2F6FFC2BEEC98400D57BFD /* BeachLifeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED2F6FFD2BEEC98400D57BFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED2F70082BEEC98400D57BFD /* BeachLifeUITestsLaunchTests.swift in Sources */,
+				ED2F70062BEEC98400D57BFD /* BeachLifeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ED2F6FF92BEEC98400D57BFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED2F6FE32BEEC98300D57BFD /* BeachLife */;
+			targetProxy = ED2F6FF82BEEC98400D57BFD /* PBXContainerItemProxy */;
+		};
+		ED2F70032BEEC98400D57BFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ED2F6FE32BEEC98300D57BFD /* BeachLife */;
+			targetProxy = ED2F70022BEEC98400D57BFD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		ED2F70092BEEC98400D57BFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ED2F700A2BEEC98400D57BFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		ED2F700C2BEEC98400D57BFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BeachLife/BeachLife.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BeachLife/Preview Content\"";
+				DEVELOPMENT_TEAM = YR2B55YA56;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donwb.BeachLife;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ED2F700D2BEEC98400D57BFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BeachLife/BeachLife.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BeachLife/Preview Content\"";
+				DEVELOPMENT_TEAM = YR2B55YA56;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donwb.BeachLife;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ED2F700F2BEEC98400D57BFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YR2B55YA56;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donwb.BeachLifeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeachLife.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BeachLife";
+			};
+			name = Debug;
+		};
+		ED2F70102BEEC98400D57BFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YR2B55YA56;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donwb.BeachLifeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BeachLife.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BeachLife";
+			};
+			name = Release;
+		};
+		ED2F70122BEEC98400D57BFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YR2B55YA56;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donwb.BeachLifeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BeachLife;
+			};
+			name = Debug;
+		};
+		ED2F70132BEEC98400D57BFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YR2B55YA56;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donwb.BeachLifeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BeachLife;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ED2F6FDF2BEEC98300D57BFD /* Build configuration list for PBXProject "BeachLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED2F70092BEEC98400D57BFD /* Debug */,
+				ED2F700A2BEEC98400D57BFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED2F700B2BEEC98400D57BFD /* Build configuration list for PBXNativeTarget "BeachLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED2F700C2BEEC98400D57BFD /* Debug */,
+				ED2F700D2BEEC98400D57BFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED2F700E2BEEC98400D57BFD /* Build configuration list for PBXNativeTarget "BeachLifeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED2F700F2BEEC98400D57BFD /* Debug */,
+				ED2F70102BEEC98400D57BFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED2F70112BEEC98400D57BFD /* Build configuration list for PBXNativeTarget "BeachLifeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ED2F70122BEEC98400D57BFD /* Debug */,
+				ED2F70132BEEC98400D57BFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ED2F6FDC2BEEC98300D57BFD /* Project object */;
+}
