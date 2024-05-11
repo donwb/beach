@@ -34,7 +34,7 @@ def main():
     
 # Query the ramps based on the known statuses, then upsert the data into the database
 def query_ramps(base_url, query, db_conn):
-    statuses = ['open', 'closed for high tide', 'closed', '4x4 only', 'closing in progress', 'closed - cleared for turtles', 'closed - at capacity']
+    statuses = ['open', 'closed for high tide', 'closed', '4x4 only', 'closing in progress', 'closed - cleared for turtles', 'closed - at capacity', 'open - entrance only']
 
 
     for status in statuses:

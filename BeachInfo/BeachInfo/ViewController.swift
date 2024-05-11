@@ -196,7 +196,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             switch currentRamp.accessStatus {
             case AccessStatus.accessStatusOpen:
                 light.backgroundColor = UIColor.green
-            case AccessStatus.accessStatus4X4Only, AccessStatus.closingInProgress:
+            case AccessStatus.accessStatus4X4Only, AccessStatus.closingInProgress, .accessEntranceOnly:
                 light.backgroundColor = UIColor.yellow
             case AccessStatus.accessStatusClosed, AccessStatus.closedForHighTide, AccessStatus.closedAtCapacity, AccessStatus.closedClearedForTurtles:
                 light.backgroundColor = UIColor.red

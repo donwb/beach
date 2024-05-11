@@ -142,7 +142,7 @@ struct ContentView: View {
             switch currentRamp.accessStatus {
             case AccessStatus.accessStatusOpen:
                 statusLightColor = .green
-            case AccessStatus.accessStatus4X4Only, AccessStatus.closingInProgress:
+            case AccessStatus.accessStatus4X4Only, AccessStatus.closingInProgress, .accessEntranceOnly:
                 statusLightColor = .yellow
             case AccessStatus.accessStatusClosed, AccessStatus.closedForHighTide, AccessStatus.closedAtCapacity, AccessStatus.closedClearedForTurtles:
                 statusLightColor = .red
