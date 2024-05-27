@@ -2,6 +2,7 @@ import requests
 import json
 import psycopg2
 import os
+import time
 
 
 # database connection info
@@ -20,6 +21,7 @@ query = "where=AccessStatus='$$$'&outFields=*&f=json"
 
 def main():
     print("Starting the ramp status update process...")
+    
 
     conn = psycopg2.connect(database = database, 
                         user = dbuser, 
@@ -32,6 +34,8 @@ def main():
     conn.close()
 
     
+
+    
 # Query the ramps based on the known statuses, then upsert the data into the database
 def query_ramps(base_url, query, db_conn):
     statuses = ['open', 'closed for high tide', 'closed', '4x4 only', 'closing in progress', 'closed - cleared for turtles', 
@@ -42,7 +46,7 @@ def query_ramps(base_url, query, db_conn):
         status_query = query.replace('$$$', status)
         url = base_url + status_query
 
-        print(url)
+        print('-------  ' + status.upper() + '  -------')
 
         response = requests.get(url)
 
@@ -61,7 +65,7 @@ def query_ramps(base_url, query, db_conn):
             
 
 def upsert_ramps(ramp_name, access_status, o_id, city, access_id, location, db_conn):
-    print('Upserting ' + ramp_name + 'OID: ' + str(o_id) + ' into the database')
+    print('Upserting ' + ramp_name.lower() + ' - OID: ' + str(o_id) + ' into the database')
 
     cur = db_conn.cursor()
     cur.execute("""
@@ -80,6 +84,13 @@ def upsert_ramps(ramp_name, access_status, o_id, city, access_id, location, db_c
     db_conn.commit()
     cur.close()
 
+startTime =  time.time()
+print("Process started at " + str(startTime))
+
 main()
+
+
+endTime = time.time() - startTime
+print("Duration: " + str(round(endTime, 2)))
 
 
