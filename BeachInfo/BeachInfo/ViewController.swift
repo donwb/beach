@@ -11,7 +11,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     
     @IBOutlet weak var tideDirectionImageView: UIImageView!
-    @IBOutlet weak var tideSymbolDirectionLabel: UILabel!
     @IBOutlet weak var tideProgressView: UIProgressView!
     @IBOutlet weak var tidesTable: UITableView!
     @IBOutlet weak var waterTempLabel: UILabel!
@@ -221,7 +220,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let formattedDate = dateFormatter.string(from: currentDateTime)
         let formattedTime = timeFormatter.string(from: currentDateTime)
         
-        let timestamp = "Last Refresh: \(formattedTime)"
+        let timestamp = "Refreshed: \(formattedTime)"
         
         lastStatusRefresh.text = timestamp
     }
