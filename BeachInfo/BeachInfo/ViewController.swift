@@ -28,6 +28,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var crawfordStatusLight: UIView!
     @IBOutlet weak var beachwayStatusLight: UIView!
   
+    @IBOutlet weak var towerCamImageView: UIImageView!
     var tideInfoArray: [TideInfo]!
     let cellReuseIdentifier = "cell"
     
@@ -59,6 +60,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func loadFromAPI() {
         let url = "https://sea-lion-app-lif8v.ondigitalocean.app/rampstatus"
         let tidesURL = "https://sea-lion-app-lif8v.ondigitalocean.app/tides"
+        let testImageURL = "https://kubrick.htvapps.com/htv-prod-media.s3.amazonaws.com/images/dynamic/wesh/CAM13.jpg?crop=1xw:1xh;center,top&resize=400:249"
         
         /*
          let url = "http://localhost:1323/rampstatus"
@@ -72,11 +74,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         callRampStatusAPI(rampsURL: url)
         
         callTideStatusAPI(tideURL: tidesURL)
+        
+        loadTowerCam(from: testImageURL)
+        
     }
     
     
-    
-    
+    func loadTowerCam(from url: String) {
+
+        if let url = URL(string: url) {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data = data, error == nil {
+                    let image = UIImage(data: data)
+                    DispatchQueue.main.async {
+                        self.towerCamImageView.image = image
+                    }
+                } else {
+                    print("Failed to load image: \(String(describing: error))")
+                }
+            }.resume()
+        }
+    }
+        
     func callRampStatusAPI(rampsURL: String) {
         let session = URLSession.shared
         

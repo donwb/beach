@@ -220,6 +220,17 @@
                                     <action selector="getRampStatus:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CPF-Sx-Zhr"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SBz-cj-Y4F">
+                                <rect key="frame" x="16" y="594" width="399" height="249"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="WESH Towercam" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5tF-O4-oeh">
+                                <rect key="frame" x="284" y="845" width="131" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -239,6 +250,7 @@
                         <outlet property="tidePercentageLabel" destination="K3J-8R-SNT" id="mmk-UF-aI6"/>
                         <outlet property="tideProgressView" destination="jyK-9a-Ryg" id="T2y-wu-Nvq"/>
                         <outlet property="tidesTable" destination="NyJ-Jn-5lL" id="XAs-4w-jgm"/>
+                        <outlet property="towerCamImageView" destination="SBz-cj-Y4F" id="skM-Vl-oyt"/>
                         <outlet property="twentySeventhStatusLight" destination="c4E-nk-RPH" id="SDG-fh-tAa"/>
                         <outlet property="twosevenLabel" destination="mIu-K8-zqn" id="s5Z-yR-6ji"/>
                         <outlet property="waterTempLabel" destination="8nt-8b-hlL" id="Lbl-yL-eBO"/>
