@@ -48,6 +48,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tideProgressView.progress = 0.0
         tideProgressView.transform = tideProgressView.transform.scaledBy(x: 1, y: 7)
         
+        // Add tap gesture recognizer
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(towercamImageTapped))
+        towerCamImageView.isUserInteractionEnabled = true
+        towerCamImageView.addGestureRecognizer(tapGestureRecognizer)
+        
         loadFromAPI()
     }
     
@@ -55,7 +60,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         loadFromAPI()
     }
-
 
     func loadFromAPI() {
         let url = "https://sea-lion-app-lif8v.ondigitalocean.app/rampstatus"
@@ -79,6 +83,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
+    @objc func towercamImageTapped() {
+        print("The image was tapped")
+        
+        if let image = towerCamImageView.image {
+            let fullscreenViewController = FullScreenImageViewController()
+            fullscreenViewController.image = image
+            fullscreenViewController.modalPresentationStyle = .fullScreen
+            present(fullscreenViewController, animated: true, completion: nil)
+        }
+    }
     
     func loadTowerCam(from url: String) {
 
