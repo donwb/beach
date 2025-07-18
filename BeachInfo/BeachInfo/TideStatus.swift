@@ -9,29 +9,16 @@ struct TideStatus: Codable {
     
     var currentWaterStats: CurrentWaterStats? = nil
     
-     static func computeCurrentWaterStats(tideStatus: TideStatus) -> TideStatus {
-         var mutableStatus = tideStatus
-         var maxTemp = 0
-         var minTemp = 200
-         var tempsArray = [Int]()
-         
-         
-         for temp in mutableStatus.waterTemps {
-             
-            if temp.waterTemp > maxTemp {
-                maxTemp = temp.waterTemp
-            }
-            if temp.waterTemp < minTemp {
-                minTemp = temp.waterTemp
-            }
-             tempsArray.append(temp.waterTemp)
-        }
-         
-         let sum = tempsArray.reduce(0, +)
-         let average = tempsArray.isEmpty ? 0 : Double(sum) / Double(tempsArray.count)
+    static func computeCurrentWaterStats(tideStatus: TideStatus) -> TideStatus {
+        var mutableStatus = tideStatus
 
-         mutableStatus.currentWaterStats = CurrentWaterStats(min: minTemp, max: maxTemp, average: average, allTemps: tempsArray)
-         return mutableStatus
+        let tempsArray = mutableStatus.waterTemps.map { $0.waterTemp }
+        let maxTemp = tempsArray.max() ?? 0
+        let minTemp = tempsArray.min() ?? 200
+        let average = tempsArray.isEmpty ? 0 : Double(tempsArray.reduce(0, +)) / Double(tempsArray.count)
+
+        mutableStatus.currentWaterStats = CurrentWaterStats(min: minTemp, max: maxTemp, average: average, allTemps: tempsArray)
+        return mutableStatus
     }
 }
 

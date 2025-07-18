@@ -1,75 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Responsive  Dots List</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    padding: 0 20px;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    margin-bottom: 10px;
-    font-size: 18px; /* Larger text for readability */
-  }
-  .dot {
-    height: 15px; /* Larger dot for better visibility */
-    width: 15px; /* Larger dot for better visibility */
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 10px;
-  }
-  .red { background-color: red; }
-  .green { background-color: green; }
-  .yellow { background-color: yellow; }
-  .grey { background-color: grey; }
-
-  .water-heading {
-    margin-top: 20px;
-    font-size: large;
-    font-weight: bold;
-    padding-bottom: 50px;
-  }
-
-  #water-info {
-    padding: 10px;
-  }
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
-    li {
-      font-size: 16px; /* Adjust font size for smaller screens */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beach Ramp Status</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #333;
     }
-    .dot {
-      height: 10px; /* Adjust dot size for smaller screens */
-      width: 10px; /* Adjust dot size for smaller screens */
+    header {
+      background: #2b3e50;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: bold;
     }
-  }
-</style>
-<script src="static/page2.js"></script>
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      background: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .filter-button {
+      background: #e0e0e0;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .filter-button:hover {
+      background: #d0d0d0;
+      transform: translateY(-2px);
+    }
+    .filter-button.active {
+      background: #2b3e50;
+      color: #fff;
+      font-weight: bold;
+    }
+    h2 {
+      margin: 2rem 1rem 0.5rem;
+      font-size: 1.4rem;
+      color: #2b3e50;
+    }
+    #rampCards {
+      padding: 1rem;
+    }
+    .city-section {
+      margin-bottom: 2rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.02);
+    }
+    .card-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .card-detail {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.2rem;
+    }
+    .status-open { color: green; font-weight: bold; }
+    .status-closed { color: red; font-weight: bold; }
+    .status-4x4 { color: orange; font-weight: bold; }
+  </style>
 </head>
 <body>
+  <header>Volusia County Beach Ramp Status</header>
+  <div class="filter-bar" id="cityHeader">Loading cities…</div>
+  <div class="filter-bar" id="statusHeader"></div>
+  <div id="rampCards">Loading data…</div>
 
-<h2>Current Ramp Status</h2> 
+  <script>
+    const container = document.getElementById("rampCards");
+    const cityHeader = document.getElementById("cityHeader");
+    const statusHeader = document.getElementById("statusHeader");
+    let groupedData = {};
+    let activeCity = "NEW SMYRNA BEACH";  // Default city
+    let activeStatus = "all";
+    let refreshInterval = 5 * 60 * 1000;  // 5 minutes
 
-<ul id="ramps">
-  
-  <!-- Add more list items here -->
-</ul>
+    function fetchData() {
+      fetch("/rampstatus")
+        .then(response => {
+          if (!response.ok) throw new Error("Network response error");
+          return response.json();
+        })
+        .then(data => {
+          groupedData = data.reduce((acc, ramp) => {
+            (acc[ramp.city] = acc[ramp.city] || []).push(ramp);
+            return acc;
+          }, {});
 
-<div id="water">
-  <div id="water-info"> <span class="water-heading"> Water Info:</span>
-    <div>Water Temp: <span id="water-temp"></span></div>
-    <div>Tide Direction: <span id="tide-dir"></span></div>
-    <div>Tide Percentage: <span id="tide-percentage"></span></div>
+          renderCityButtons(Object.keys(groupedData));
+          renderStatusButtons();
+          renderCards(activeCity, activeStatus);
+        })
+        .catch(err => {
+          container.innerHTML = `<p style="color:red">Error loading data: ${err.message}</p>`;
+          console.error(err);
+        });
+    }
 
-    <div>Next Tide Info:</div>
-    <div id="next-tide-info"></div>
-  </div>
-</div> 
+    function renderCityButtons(cities) {
+      cityHeader.innerHTML = "";
+      const allBtn = createCityButton("All Cities", "all");
+      cityHeader.appendChild(allBtn);
+
+      cities.forEach(city => {
+        cityHeader.appendChild(createCityButton(city, city));
+      });
+
+      const defaultBtn = [...document.querySelectorAll(".city-button")]
+        .find(b => b.textContent.toLowerCase() === activeCity.toLowerCase()) || allBtn;
+      setActiveButton(defaultBtn, ".city-button");
+    }
+
+    function createCityButton(label, value) {
+      const btn = document.createElement("button");
+      btn.className = "filter-button city-button";
+      btn.textContent = label;
+      btn.addEventListener("click", () => {
+        activeCity = value;
+        setActiveButton(btn, ".city-button");
+        renderCards(activeCity, activeStatus);
+      });
+      return btn;
+    }
+
+    function renderStatusButtons() {
+      const statuses = ["All", "OPEN", "CLOSED", "4X4 ONLY"];
+      statusHeader.innerHTML = "";
+      statuses.forEach(status => {
+        const btn = document.createElement("button");
+        btn.className = "filter-button status-button";
+        btn.textContent = status;
+        btn.addEventListener("click", () => {
+          activeStatus = status.toLowerCase();
+          setActiveButton(btn, ".status-button");
+          renderCards(activeCity, activeStatus);
+        });
+        statusHeader.appendChild(btn);
+      });
+      setActiveButton(statusHeader.querySelector("button"), ".status-button");
+    }
+
+    function setActiveButton(activeBtn, selector) {
+      document.querySelectorAll(selector).forEach(b => b.classList.remove("active"));
+      activeBtn.classList.add("active");
+    }
+
+    function renderCards(selectedCity, selectedStatus) {
+      container.innerHTML = "";
+      const allCities = Object.keys(groupedData);
+      const cities = selectedCity === "all"
+        ? allCities
+        : allCities.filter(c => c.toLowerCase() === selectedCity.toLowerCase());
+
+      cities.forEach(city => {
+        let ramps = groupedData[city] || [];
+
+        // Filter by status
+        if (selectedStatus !== "all") {
+          ramps = ramps.filter(r =>
+            selectedStatus === "open" ? r.accessStatus.includes("OPEN") :
+            selectedStatus === "closed" ? r.accessStatus.includes("CLOSED") :
+            r.accessStatus.includes("4X4")
+          );
+        }
+
+        if (!ramps || ramps.length === 0) return;
+
+        const section = document.createElement('div');
+        section.className = 'city-section';
+
+        const title = document.createElement('h2');
+        title.textContent = city;
+        section.appendChild(title);
+
+        const grid = document.createElement('div');
+        grid.className = 'card-grid';
+
+        ramps.forEach(ramp => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class="card-title">${ramp.rampName}</div>
+            <div class="card-detail status-${
+              ramp.accessStatus.includes("OPEN")
+                ? "open"
+                : ramp.accessStatus.includes("CLOSED")
+                ? "closed"
+                : "4x4"
+            }">${ramp.accessStatus}</div>
+            <div class="card-detail"><strong>Location:</strong> ${ramp.location}</div>
+            <div class="card-detail"><strong>Access ID:</strong> ${ramp.accessID}</div>
+          `;
+          grid.appendChild(card);
+        });
+
+        section.appendChild(grid);
+        container.appendChild(section);
+      });
+    }
+
+    // Initial fetch
+    fetchData();
+
+    // Auto-refresh every 5 minutes
+    setInterval(() => {
+      fetchData();
+    }, refreshInterval);
+  </script>
 </body>
 </html>
