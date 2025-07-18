@@ -21,10 +21,10 @@ test:
 	gow -e=go,mod,html,js,css run .
 
 docker-build:
-	docker build --platform linux/amd64 -t donwb/beachsrv:0.7 .
+	docker build --platform linux/amd64 -t donwb/beachsrv:0.8 .
 
 
 docker-run:
-	docker run --platform linux/amd64 --env-file=docker-env -p 80:1323 -it donwb/beachsrv:0.7
+	docker run --platform linux/amd64 --env-file=docker-env -p 80:1323 -it donwb/beachsrv:0.8
 
 .DEFAULT_GOAL := all
