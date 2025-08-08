@@ -48,6 +48,8 @@ def main(config):
     tide_percentage = "0%"
     currentTideHighLow = "N"
 
+    
+
     return render.Root(
         render.Row(
             children=[
