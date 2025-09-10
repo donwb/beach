@@ -26,16 +26,31 @@ func getTideInfo() []TideInfo {
 	tidesURL := constructURL(DailyTides)
 
 	resp, err := http.Get(tidesURL)
-	checkError(err, "Error getting response")
+	if err != nil {
+		fmt.Printf("Error getting NOAA tide response: %v\n", err)
+		return []TideInfo{}
+	}
 
 	defer resp.Body.Close()
 
+	// Check for HTTP error status
+	if resp.StatusCode != http.StatusOK {
+		fmt.Printf("NOAA API returned status: %d\n", resp.StatusCode)
+		return []TideInfo{}
+	}
+
 	body, err := ioutil.ReadAll(resp.Body)
-	checkError(err, "Error reading response body")
+	if err != nil {
+		fmt.Printf("Error reading NOAA response body: %v\n", err)
+		return []TideInfo{}
+	}
 
 	var tideInfo TideInfoFromNOAA
 	err = json.Unmarshal(body, &tideInfo)
-	checkError(err, "Error unmarshalling json")
+	if err != nil {
+		fmt.Printf("Error unmarshalling NOAA tide json: %v\n", err)
+		return []TideInfo{}
+	}
 
 	outputTideInfo := getNextHighAndLowTides(tideInfo)
 	return outputTideInfo
@@ -123,31 +138,65 @@ func getWaterTemp() (int, int) {
 	url := constructURL(WaterTemp)
 	jaxUrl := constructURL(WaterTempJax)
 
-	// Get water temp from Canaveral
+	// Get water temp from Canaveral with error handling
 	resp, err := http.Get(url)
-	checkError(err, "WaterTemp:: Error getting response")
-
+	if err != nil {
+		fmt.Printf("WaterTemp:Canaveral: Error getting response: %v\n", err)
+		return 0, 0
+	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode != http.StatusOK {
+		fmt.Printf("WaterTemp:Canaveral: API returned status: %d\n", resp.StatusCode)
+		return 0, 0
+	}
+
 	body, err := ioutil.ReadAll(resp.Body)
-	checkError(err, "WaterTemp:Canaveral: Error reading response body")
+	if err != nil {
+		fmt.Printf("WaterTemp:Canaveral: Error reading response body: %v\n", err)
+		return 0, 0
+	}
 
 	var waterTempFromNOAA WaterTempFromNOAA
 	err = json.Unmarshal(body, &waterTempFromNOAA)
-	checkError(err, "WaterTemp:Canaveral: Error unmarshalling json")
+	if err != nil {
+		fmt.Printf("WaterTemp:Canaveral: Error unmarshalling json: %v\n", err)
+		return 0, 0
+	}
 
-	// Get water temp from Jax
+	// Get water temp from Jax with error handling
 	jaxResp, err := http.Get(jaxUrl)
-	checkError(err, "WaterTemp:Jax: Error getting response")
-
+	if err != nil {
+		fmt.Printf("WaterTemp:Jax: Error getting response: %v\n", err)
+		// Still return Canaveral temp if we got it successfully
+		waterTemp := waterTempToInt(waterTempFromNOAA)
+		return waterTemp, 0
+	}
 	defer jaxResp.Body.Close()
 
+	if jaxResp.StatusCode != http.StatusOK {
+		fmt.Printf("WaterTemp:Jax: API returned status: %d\n", jaxResp.StatusCode)
+		// Still return Canaveral temp if we got it successfully
+		waterTemp := waterTempToInt(waterTempFromNOAA)
+		return waterTemp, 0
+	}
+
 	jaxBody, err := ioutil.ReadAll(jaxResp.Body)
-	checkError(err, "WaterTemp:: Error reading response body")
+	if err != nil {
+		fmt.Printf("WaterTemp:Jax: Error reading response body: %v\n", err)
+		// Still return Canaveral temp if we got it successfully
+		waterTemp := waterTempToInt(waterTempFromNOAA)
+		return waterTemp, 0
+	}
 
 	var jaxWaterTempFromNOAA WaterTempFromNOAA
 	err = json.Unmarshal(jaxBody, &jaxWaterTempFromNOAA)
-	checkError(err, "WaterTemp:Jax: Error unmarshalling json")
+	if err != nil {
+		fmt.Printf("WaterTemp:Jax: Error unmarshalling json: %v\n", err)
+		// Still return Canaveral temp if we got it successfully
+		waterTemp := waterTempToInt(waterTempFromNOAA)
+		return waterTemp, 0
+	}
 
 	// convert water temp to int
 	waterTemp := waterTempToInt(waterTempFromNOAA)
@@ -157,12 +206,35 @@ func getWaterTemp() (int, int) {
 }
 
 func waterTempToInt(waterTempFromNOAA WaterTempFromNOAA) int {
-	tempToUse := waterTempFromNOAA.Data[6].V
+	// Check if data array is empty
+	if len(waterTempFromNOAA.Data) == 0 {
+		fmt.Println("WaterTemp:: No temperature data available")
+		return 0
+	}
+
+	// Use the most recent data point (last in array) instead of hardcoded index
+	lastIndex := len(waterTempFromNOAA.Data) - 1
+	tempToUse := waterTempFromNOAA.Data[lastIndex].V
+	
+	// Handle case where temperature value is empty or invalid
+	if tempToUse == "" {
+		fmt.Println("WaterTemp:: Empty temperature value")
+		return 0
+	}
+
 	decimalIndex := strings.Index(tempToUse, ".")
-	strTemp := tempToUse[:decimalIndex]
+	var strTemp string
+	if decimalIndex != -1 {
+		strTemp = tempToUse[:decimalIndex]
+	} else {
+		strTemp = tempToUse // No decimal point, use whole string
+	}
 
 	waterTemp, err := strconv.Atoi(strTemp)
-	checkError(err, "WaterTemp:: Error converting water temp to int")
+	if err != nil {
+		fmt.Printf("WaterTemp:: Error converting water temp to int: %v, using 0\n", err)
+		return 0
+	}
 	return waterTemp
 }
 

@@ -68,12 +68,22 @@ func tidesHandler(c echo.Context) error {
 	var currentTide string
 	var tideLevelPercentage int
 
+	// Fix: properly check if tide data is available and valid
 	if len(outputTideInfo) == 0 {
+		fmt.Println("No tide information available")
 		currentTide = "---"
 		tideLevelPercentage = 0
 	} else {
-		currentTide = computeTideDirection(outputTideInfo[0])
-		tideLevelPercentage = computeTidePercentage(outputTideInfo[0])
+		// Additional safety check to ensure we have valid data
+		firstTide := outputTideInfo[0]
+		if !firstTide.TideDateTime.IsZero() {
+			currentTide = computeTideDirection(firstTide)
+			tideLevelPercentage = computeTidePercentage(firstTide)
+		} else {
+			fmt.Println("Invalid tide data - zero time")
+			currentTide = "---"
+			tideLevelPercentage = 0
+		}
 	}
 
 	res := TideInfoResponse{

@@ -101,6 +101,9 @@
 </head>
 <body>
   <header>Volusia County Beach Ramp Status</header>
+  <div id="tideInfo" style="background: #fff; padding: 1rem 2rem; box-shadow: 0 1px 4px rgba(0,0,0,0.1); text-align: center; font-size: 1.1rem;">
+    <span id="tideDisplay">Loading tide information...</span>
+  </div>
   <div class="filter-bar" id="cityHeader">Loading cities…</div>
   <div class="filter-bar" id="statusHeader"></div>
   <div id="rampCards">Loading data…</div>
@@ -113,6 +116,26 @@
     let activeCity = "NEW SMYRNA BEACH";
     let activeStatus = "all";
     let refreshInterval = 5 * 60 * 1000;
+
+    function fetchTideData() {
+      fetch("/tides")
+        .then(response => {
+          if (!response.ok) throw new Error("Network response error");
+          return response.json();
+        })
+        .then(data => {
+          const tideDisplay = document.getElementById("tideDisplay");
+          tideDisplay.innerHTML = `
+            <strong>Tide:</strong> ${data.currentTideHighOrLow} (${data.tideLevelPercentage}%) • 
+            <strong>Water Temp:</strong> ${data.waterTemp}°F
+          `;
+        })
+        .catch(err => {
+          const tideDisplay = document.getElementById("tideDisplay");
+          tideDisplay.innerHTML = "Tide information unavailable";
+          console.error("Error loading tide data:", err);
+        });
+    }
 
     function fetchData() {
       fetch("/rampstatus")
@@ -240,7 +263,11 @@
 
     // Initial fetch
     fetchData();
-    setInterval(fetchData, refreshInterval);
+    fetchTideData();
+    setInterval(() => {
+      fetchData();
+      fetchTideData();
+    }, refreshInterval);
   </script>
 </body>
 </html>
