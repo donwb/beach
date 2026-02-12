@@ -30,7 +30,8 @@ func main() {
 
 	e.Static("/static", "view")
 
-	e.GET("/", indexHandler)
+	e.GET("/", newPageHandler)
+	e.GET("/old", indexHandler)
 	e.GET("/rampstatus", rampStatusHandler)
 	e.GET("/ramps", rampsHandler)
 	e.GET("/tides", tidesHandler)

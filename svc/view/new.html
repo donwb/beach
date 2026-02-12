@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volusia Beach Ramp Status</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="/static/new.css" rel="stylesheet">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero-wrap py-2 px-3 px-md-4 mb-2">
+      <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
+        <div>
+          <p class="hero-kicker mb-1">Volusia County</p>
+          <h1 class="hero-title mb-0">Beach Ramp Status</h1>
+        </div>
+        <div class="hero-meta">
+          <div>Default city: <strong>New Smyrna Beach</strong></div>
+          <div>
+            Tide: <strong id="tideDirection">--</strong> (<strong id="tideProgress">--</strong> to next change)
+            | Water: <strong id="waterTemp">--</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container-fluid px-0">
+      <div class="row g-2 mb-2 mb-md-3 stats-row" id="statsRow">
+        <div class="col-6 col-md-3">
+          <article class="stat-card stat-total">
+            <h2 class="stat-label">Shown</h2>
+            <p class="stat-value" id="shownCount">0</p>
+          </article>
+        </div>
+        <div class="col-6 col-md-3">
+          <article class="stat-card stat-open">
+            <h2 class="stat-label">Open</h2>
+            <p class="stat-value" id="openCount">0</p>
+          </article>
+        </div>
+        <div class="col-6 col-md-3">
+          <article class="stat-card stat-limited">
+            <h2 class="stat-label">Limited</h2>
+            <p class="stat-value" id="limitedCount">0</p>
+          </article>
+        </div>
+        <div class="col-6 col-md-3">
+          <article class="stat-card stat-closed">
+            <h2 class="stat-label">Closed</h2>
+            <p class="stat-value" id="closedCount">0</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="filters-wrap mb-2" aria-label="Filters">
+      <div class="row g-2">
+        <div class="col-12">
+          <p class="form-label mb-1">City</p>
+          <div id="cityFilterList" class="pick-list" role="group" aria-label="City filters"></div>
+        </div>
+        <div class="col-12">
+          <p class="form-label mb-1">Ramp Status</p>
+          <div id="statusFilterList" class="pick-list" role="group" aria-label="Ramp status filters"></div>
+        </div>
+      </div>
+      <p class="filter-summary mt-1 mb-0" id="resultCount">0 ramps shown</p>
+    </section>
+
+    <section>
+      <div id="errorBanner" class="alert alert-danger d-none" role="alert"></div>
+      <div id="loadingState" class="loading-state">Loading ramp status...</div>
+      <div id="emptyState" class="empty-state d-none">No ramps match your current filters.</div>
+      <div id="rampGrid" class="row g-3"></div>
+    </section>
+  </main>
+
+  <script src="/static/new.js"></script>
+</body>
+</html>

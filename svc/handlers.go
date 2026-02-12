@@ -49,6 +49,14 @@ func indexHandler(c echo.Context) error {
 	})
 }
 
+func newPageHandler(c echo.Context) error {
+	fmt.Println("New Page Handler")
+	return c.Render(http.StatusOK, "new.html", map[string]interface{}{
+		"name": "Ramps New",
+		"msg":  "Ramp Info New",
+	})
+}
+
 func tidesHandler(c echo.Context) error {
 
 	outputTideInfo := getTideInfo()
