@@ -2,6 +2,8 @@
 # The include should be a single file that contains:
 # export APIKEY := {APIKEY}
 # export SECRET := {SECRET}
+# use 	BUMP=minor make release or
+# 		BUMP=major make release
 #
 include env
 
