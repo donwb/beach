@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSB Beach Dashboard</title>
+  <link rel="stylesheet" href="/static/trmnl.css">
+</head>
+<body>
+  <main class="frame">
+    <header class="topbar">
+      <h1>New Smyrna Beach</h1>
+      <p id="clock">--:--</p>
+    </header>
+
+    <section class="tide-strip" aria-label="Tide and temperature">
+      <div class="metric">
+        <span class="label">Tide</span>
+        <span class="value" id="tideDirection">--</span>
+      </div>
+      <div class="metric">
+        <span class="label">Progress</span>
+        <span class="value" id="tidePercent">--%</span>
+      </div>
+      <div class="metric">
+        <span class="label">Water</span>
+        <span class="value" id="waterTemp">--F</span>
+      </div>
+      <div class="metric">
+        <span class="label">Updated</span>
+        <span class="value" id="lastUpdated">--:--</span>
+      </div>
+    </section>
+
+    <section>
+      <ul id="rampList" class="ramp-list" aria-label="Ramp status list">
+        <li class="empty">Loading ramps...</li>
+      </ul>
+    </section>
+
+    <p id="errorMessage" class="error hidden">Unable to load latest data.</p>
+  </main>
+
+  <script src="/static/trmnl.js"></script>
+</body>
+</html>

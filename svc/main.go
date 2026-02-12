@@ -31,6 +31,7 @@ func main() {
 	e.Static("/static", "view")
 
 	e.GET("/", newPageHandler)
+	e.GET("/trmnl", trmnlHandler)
 	e.GET("/old", indexHandler)
 	e.GET("/rampstatus", rampStatusHandler)
 	e.GET("/ramps", rampsHandler)

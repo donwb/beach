@@ -57,6 +57,14 @@ func newPageHandler(c echo.Context) error {
 	})
 }
 
+func trmnlHandler(c echo.Context) error {
+	fmt.Println("TRMNL Page Handler")
+	return c.Render(http.StatusOK, "trmnl.html", map[string]interface{}{
+		"name": "TRMNL Dashboard",
+		"msg":  "TRMNL Display",
+	})
+}
+
 func tidesHandler(c echo.Context) error {
 
 	outputTideInfo := getTideInfo()
