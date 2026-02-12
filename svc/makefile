@@ -21,10 +21,13 @@ test:
 	gow -e=go,mod,html,js,css run .
 
 docker-build:
-	docker build --platform linux/amd64 -t donwb/beachsrv:1.0 .
+	docker build --platform linux/amd64 -t donwb/beachsrv:$$(cat VERSION 2>/dev/null || echo 1.0.0) .
 
 
 docker-run:
-	docker run --platform linux/amd64 --env-file=docker-env -p 80:1323 -it donwb/beachsrv:1.0
+	docker run --platform linux/amd64 --env-file=docker-env -p 80:1323 -it donwb/beachsrv:$$(cat VERSION 2>/dev/null || echo 1.0.0)
+
+release:
+	./release.sh --bump $${BUMP:-patch}
 
 .DEFAULT_GOAL := all
